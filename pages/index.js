@@ -9,11 +9,21 @@ import Box from "../components/Box";
 import Credit from "../components/Credit";
 
 export default function Home() {
-  const { systemTheme, theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-
-  const currentDate = new Date(2018, 11, 24, 18, 33);
+  const [currentDate, setCurrentDate] = useState(new Date());
   const currentHour = currentDate.getHours();
+
+  function refreshClock() {
+    setCurrentDate(new Date());
+  }
+  useEffect(() => {
+    const timerId = setInterval(refreshClock, 1000);
+    return function cleanup() {
+      clearInterval(timerId);
+    };
+  }, []);
+
 
   const renderThemeChanger = () => {
     if (currentHour <= 6 || currentHour >= 18) {
@@ -26,7 +36,7 @@ export default function Home() {
   useEffect(() => {
     setMounted(true);
     renderThemeChanger();
-  }, []);
+  }, [currentDate]);
 
   if (!mounted) {
     return;
