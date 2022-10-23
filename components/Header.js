@@ -2,9 +2,21 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 
 
-export default function Header(hour, minutes) {
+export default function Header() {
 
     const [country, setCountry] = useState(null);
+    const [date, setCurrentDate] = useState(new Date());
+
+    function refreshClock() {
+        setCurrentDate(new Date());
+      }
+      useEffect(() => {
+        const timerId = setInterval(refreshClock, 1000);
+        return function cleanup() {
+          clearInterval(timerId);
+        };
+      }, []);
+
     useEffect(() => {
         fetch(`https://geolocation-db.com/json/${process.env.NEXT_PUBLIC_GEOLOCATION_KEY}`)
         .then(response => {
@@ -22,16 +34,7 @@ export default function Header(hour, minutes) {
         })
 
     }, []);
-    const currentTime = () => {
-        if(hour.hour > 12) {
-            return `${hour?.hour}:${hour?.minutes}pm`
-        } else if (hour.hour < 12 && hour.hour < 10){
-            return `0${hour?.hour}:${hour?.minutes}am`
-
-        } else {
-            return `${hour?.hour}:${hour?.minutes}am`
-        }
-    }
+   
     const headerDetails = [
         {
             label: "portfolio",
@@ -47,7 +50,12 @@ export default function Header(hour, minutes) {
         },
         {
             label: "location (+ time)",
-            field: `${country} ${currentTime()}`,
+            field: `${country} ${date.toLocaleString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true,
+            })}`,
         }
     ];
     return (

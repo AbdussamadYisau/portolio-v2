@@ -11,10 +11,10 @@ export default function Home() {
 
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
-  const currentMinute = currentDate.getMinutes();
+ 
 
   const renderThemeChanger = () => {
-    if (currentHour < 7 || currentHour >= 18) {
+    if (currentHour <= 6 || currentHour >= 18) {
       setTheme('dark');
     } else {
       setTheme('light');
@@ -40,7 +40,7 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet"/>
       </Head>
 
-      <Header hour={currentHour} minutes={currentMinute} />
+      <Header />
 
     </div>
   )
