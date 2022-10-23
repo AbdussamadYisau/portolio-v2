@@ -5,6 +5,7 @@ import { useTheme } from 'next-themes'
 import { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import Bio from '../components/Bio'
+import Experience from '../components/Experience'
 
 
 export default function Home() {
@@ -45,6 +46,8 @@ export default function Home() {
       <Header />
 
       <Bio />
+
+      <Experience />
 
     </div>
   )
