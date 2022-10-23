@@ -49,7 +49,7 @@ export default function Header() {
             field: "https://github.com/AbdussamadYisau"
         },
         {
-            label: "location (+ time)",
+            label: "location",
             field: `${country} ${date.toLocaleString('en-US', {
                 hour: 'numeric',
                 minute: 'numeric',

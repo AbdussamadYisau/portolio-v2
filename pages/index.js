@@ -4,6 +4,8 @@ import styles from '../styles/Home.module.css'
 import { useTheme } from 'next-themes'
 import { useState, useEffect } from 'react'
 import Header from '../components/Header'
+import Bio from '../components/Bio'
+
 
 export default function Home() {
   const {systemTheme, theme, setTheme} =  useTheme();
@@ -41,6 +43,8 @@ export default function Home() {
       </Head>
 
       <Header />
+
+      <Bio />
 
     </div>
   )
