@@ -78,11 +78,11 @@ export default function Experience() {
                   : `pb-[40px]`
               }`}
             >
-              <p className="text-[16px] text-[#595959] pt-[12px] w-[245px]">
+              <p className="text-[16px] text-[#595959] pt-[12px] lg:w-[245px]">
                 {experience.period}
               </p>
               <div>
-                <p className="text-[16px] dark:text-white border border-[#1F1F1F] dark:border-white p-2.5 w-[400px]">
+                <p className="text-[16px] dark:text-white border border-[#1F1F1F] dark:border-white p-2.5 lg:w-[400px]">
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
                     //{experience.role.toLowerCase()}
@@ -92,7 +92,7 @@ export default function Experience() {
                   {experience.tasks.map((item, index) => (
                     <li
                       key={index}
-                      className="pb-2 text-[16px] w-[700px] text-[#26262] dark:text-white-[.87] "
+                      className="pb-2 text-[16px] lg:w-[700px] text-[#26262] dark:text-white-[.87] "
                     >
                       {" "}
                       {item}
@@ -138,11 +138,11 @@ export default function Experience() {
                   : `pb-[40px]`
               }`}
             >
-              <p className="text-[16px] text-[#595959] pt-[12px] w-[245px]">
+              <p className="text-[16px] text-[#595959] pt-[12px] lg:w-[245px]">
                 {experience.period}
               </p>
               <div>
-                <p className="text-[16px] dark:text-white border border-[#1F1F1F] dark:border-white p-2.5 w-[600px]">
+                <p className="text-[16px] dark:text-white border border-[#1F1F1F] dark:border-white p-2.5 lg:w-[600px]">
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
                     //{experience.role.toLowerCase()}
@@ -152,7 +152,7 @@ export default function Experience() {
                   {experience.tasks.map((item, index) => (
                     <li
                       key={index}
-                      className="pb-2 text-[16px] w-[700px] text-[#26262] dark:text-white-[.87] "
+                      className="pb-2 text-[16px] lg:w-[700px] text-[#26262] dark:text-white-[.87] "
                     >
                       {" "}
                       {item}

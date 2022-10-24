@@ -42,7 +42,9 @@ export default function Home() {
     return;
   }
   return (
-    <div>
+    <div className="w-screen" style={{
+      padding: '35px 60px 20px 60px' 
+    }}>
       <Head>
         <title>Sammie Yisau's portfolio</title>
         <meta name="description" content="A portfolio for Sammie Yisau" />

@@ -26,14 +26,14 @@ export default function Bio() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-row justify-start gap-8 border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12] pt-14">
-        <div>
+    <div className="flex flex-col justify-items-center gap-6">
+      <div className="flex flex-col justify-center md:flex-row md:justify-start gap-8 border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12] pt-14">
+        <div className="flex justify-center">
           <Image
             src="/profilePic.jpeg"
             width={"169px"}
             height={"169px"}
-            className="rounded-full"
+            className="rounded-full text-center"
           />
         </div>
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
 
-    const [country, setCountry] = useState(null);
+    const [country, setCountry] = useState('loading...');
     const [date, setCurrentDate] = useState(new Date());
 
     function refreshClock() {
@@ -62,16 +62,16 @@ export default function Header() {
         }
     ];
     return (
-        <div>
-            <Head>
+        <>
+            {/* <Head>
             <link rel="preconnect" href="https://fonts.googleapis.com"/>
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
             <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet"/>
-            </Head>
+            </Head> */}
 
-            <nav className="flex flex-row justify-between border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]">
+            <nav className="flex flex-col gap-4 md:flex md:flex-row md:justify-between border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]">
                 {headerDetails.map((item, index) => 
-                    <div key={index} className={`${index !== 0 ? "border-l pl-4 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]" : ""}`}>
+                    <div key={index} className={`${index !== 0 ? "md:border-l pl-4 md:border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]" : "pl-4"}`}>
                         <p  className=" text-sm text-[#8C8C8C]">//{item.label}</p>
                         {index === 1 || index === 2 ?
                             <Link key ={index} href={item.link} passHref>
@@ -84,6 +84,6 @@ export default function Header() {
                     </div>
                 )}
             </nav>
-        </div>
+        </>
     )
 }
