@@ -26,7 +26,7 @@ export default function Home() {
 
 
   const renderThemeChanger = () => {
-    if (currentHour <= 6 || currentHour >= 18) {
+    if (currentHour <= 7 || currentHour >= 18) {
       setTheme("dark");
     } else {
       setTheme("light");

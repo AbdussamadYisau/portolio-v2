@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
@@ -42,11 +43,13 @@ export default function Header() {
         }, 
         {
             label: "email",
-            field: "sammieyisau@gmail.com"
+            field: "sammieyisau@gmail.com",
+            link: "mailto:sammieyisau@gmail.com "
         }, 
         {
             label: "github",
-            field: "https://github.com/AbdussamadYisau"
+            field: "https://github.com/AbdussamadYisau",
+            link: "https://github.com/AbdussamadYisau"
         },
         {
             label: "location",
@@ -70,7 +73,14 @@ export default function Header() {
                 {headerDetails.map((item, index) => 
                     <div key={index} className={`${index !== 0 ? "border-l pl-4 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]" : ""}`}>
                         <p  className=" text-sm text-[#8C8C8C]">//{item.label}</p>
-                        <p className="text-base text-[#141414] dark:text-white dark:opacity-80">{item.field}</p>
+                        {index === 1 || index === 2 ?
+                            <Link key ={index} href={item.link} passHref>
+                                <a target="_blank" className="text-base text-[#141414] dark:text-white dark:opacity-80">{item.field}</a> 
+                                
+                            </Link>:
+                            <p className="text-base text-[#141414] dark:text-white dark:opacity-80">{item.field}</p>
+                        }
+                        
                     </div>
                 )}
             </nav>
