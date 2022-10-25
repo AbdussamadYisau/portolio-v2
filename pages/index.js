@@ -24,7 +24,6 @@ export default function Home() {
     };
   }, []);
 
-
   const renderThemeChanger = () => {
     if (currentHour <= 7 || currentHour >= 18) {
       setTheme("dark");
@@ -42,13 +41,42 @@ export default function Home() {
     return;
   }
   return (
-    <div className="w-screen" style={{
-      padding: '35px 60px 20px 60px' 
-    }}>
+    <div
+      className="w-screen"
+      style={{
+        padding: "35px 60px 20px 60px",
+      }}
+    >
       <Head>
-        <title>Sammie Yisau's portfolio</title>
-        <meta name="description" content="A portfolio for Sammie Yisau" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta charset="utf-8" />
+        <title>Portfolio - Abdussamad Yisau </title>
+        <meta
+          content="Specializing in creating functional and aesthetically pleasing web and mobile experiences with a focus on clean, responsive, and pleasing content."
+          name="description"
+        />
+        <meta content="Portfolio - Abdussamad Yisau" property="og:title" />
+        <meta
+          content="Specializing in creating functional and aesthetically pleasing web and mobile experiences with a focus on clean, responsive, and pleasing content."
+          property="og:description"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
