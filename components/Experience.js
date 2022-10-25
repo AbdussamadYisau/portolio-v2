@@ -82,7 +82,7 @@ export default function Experience() {
                 {experience.period}
               </p>
               <div>
-                <p className="text-[16px] dark:text-white border border-[#1F1F1F] dark:border-white p-2.5 w-full lg:w-[400px]">
+                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] dark:border-white p-2.5 w-full lg:w-[400px]">
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
                     //{experience.role.toLowerCase()}
@@ -92,7 +92,7 @@ export default function Experience() {
                   {experience.tasks.map((item, index) => (
                     <li
                       key={index}
-                      className="pb-2 text-[16px] w-full lg:w-[700px] text-[#26262] dark:text-white-[.87] "
+                      className="pb-2 text-[16px] w-full lg:w-[700px] text-[#26262] dark:text-white dark:text-opacity-[.87] "
                     >
                       {" "}
                       {item}
@@ -142,7 +142,7 @@ export default function Experience() {
                 {experience.period}
               </p>
               <div>
-                <p className="text-[16px] dark:text-white border border-[#1F1F1F] w-full dark:border-white p-2.5 lg:w-[600px]">
+                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] w-full dark:border-white p-2.5 lg:w-[600px]">
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
                     //{experience.role.toLowerCase()}
@@ -152,7 +152,7 @@ export default function Experience() {
                   {experience.tasks.map((item, index) => (
                     <li
                       key={index}
-                      className="pb-2 text-[16px] w-full lg:w-[700px] text-[#26262] dark:text-white-[.87] "
+                      className="pb-2 text-[16px] w-full lg:w-[700px] text-[#26262] dark:text-white dark:text-opacity-[.87] "
                     >
                       {" "}
                       {item}

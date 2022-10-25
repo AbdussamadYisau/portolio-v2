@@ -30,11 +30,12 @@ export default function Home() {
     } else {
       setTheme("light");
     }
+
   };
 
   useEffect(() => {
     setMounted(true);
-    renderThemeChanger();
+    renderThemeChanger();    
   }, [currentDate]);
 
   if (!mounted) {
@@ -42,9 +43,9 @@ export default function Home() {
   }
   return (
     <div
-      className="w-full"
+      className="w-screen bg-[#D7D7D7] dark:bg-[#121212]"
       style={{
-        padding: "35px 60px 20px 60px",
+         padding: "35px 60px 20px 60px"
       }}
     >
       <Head>

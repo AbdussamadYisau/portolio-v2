@@ -1,27 +1,38 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  width: 100vw;
+  height: 100vh;
+}
 html,
 body {
-  padding: 0;
   
+  /* background-color: #D7D7D7; */
   font-family: "Space Mono", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
 
 .typed-cursor {
-  font-size: 50px;
+  display: inline;
+  font-size: 24px;
+}
+
+@media (min-width: 768px) {
+  .typed-cursor {
+    display: inline;
+    font-size: 50px;
+  }  
 }
 
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

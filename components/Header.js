@@ -69,10 +69,10 @@ export default function Header() {
                         <p  className=" text-sm text-[#8C8C8C]">//{item.label}</p>
                         {index === 1 || index === 2 ?
                             <Link key ={index} href={item.link} passHref>
-                                <a target="_blank" className="text-base text-[#141414] dark:text-white dark:opacity-80">{item.field}</a> 
+                                <a target="_blank" className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">{item.field}</a> 
                                 
                             </Link>:
-                            <p className="text-base text-[#141414] dark:text-white dark:opacity-80">{item.field}</p>
+                            <p className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">{item.field}</p>
                         }
                         
                     </div>
