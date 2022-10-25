@@ -25,10 +25,10 @@ export default function Links() {
       {linksInfo.map((experience, index) => (
         <div
           key={index}
-          className={`flex flex-row justify-start gap-x-[158px] pb-[40px]
+          className={`flex flex-col lg:flex-row justify-start gap-x-[158px] pb-[40px]
            `}
         >
-          <p className="text-[16px] text-[#595959] w-[245px]">
+          <p className="text-[16px] text-[#595959] pb-[20px] xl:pb-[0px] w-full xl:w-[245px]">
             {experience.title}
           </p>
           <div>

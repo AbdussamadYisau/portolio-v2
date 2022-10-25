@@ -63,12 +63,6 @@ export default function Header() {
     ];
     return (
         <>
-            {/* <Head>
-            <link rel="preconnect" href="https://fonts.googleapis.com"/>
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-            <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet"/>
-            </Head> */}
-
             <nav className="flex flex-col gap-4 md:flex md:flex-row md:justify-between border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]">
                 {headerDetails.map((item, index) => 
                     <div key={index} className={`${index !== 0 ? "md:border-l pl-4 md:border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]" : "pl-4"}`}>

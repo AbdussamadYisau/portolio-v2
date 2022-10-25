@@ -26,7 +26,7 @@ export default function Bio() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-items-center gap-6">
+    <div className="flex flex-col justify-items-center gap-6 w-full">
       <div className="flex flex-col justify-center md:flex-row md:justify-start gap-8 border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12] pt-14">
         <div className="flex justify-center">
           <Image
@@ -45,7 +45,7 @@ export default function Bio() {
 
       <div className="border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]">
         <p className="text-[16px] text-[#8C8C8C]">//about</p>
-        <p className="text-[16px] pt-[24px] text-[#1F1F1F] dark:text-[#FFFFFF]">
+        <p className="text-[16px] pt-[24px] text-[#1F1F1F] dark:text-[#FFFFFF] w-full">
           hi, i’m abdussamad, my friends call me sammie. i enjoy building <br />{" "}
           dynamic, creative products from start to finish, focused on <br />{" "}
           developing intuitive experiences that constantly grow and improve{" "}
