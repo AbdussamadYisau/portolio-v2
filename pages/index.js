@@ -42,7 +42,7 @@ export default function Home() {
   }
   return (
     <div
-      className="w-screen"
+      className="w-full"
       style={{
         padding: "35px 60px 20px 60px",
       }}
