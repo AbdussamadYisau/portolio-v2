@@ -40,9 +40,9 @@ export default function Bio() {
 
         <div className="pt-8 flex flex-col items-center md:items-start">
           <div className="flex flex-row">
-          <span className="text-2xl md:text-6xl dark:text-white dark:text-opacity-[.87]" ref={el}></span>
+          <span className="text-xl md:text-6xl dark:text-white dark:text-opacity-[.87]" ref={el}></span>
           </div>
-          <p className="text-2xl text-[#8C8C8C]">//fullstack developer</p>
+          <p className="text-xl md:text-2xl text-[#8C8C8C]">//fullstack developer</p>
         </div>
       </div>
 
