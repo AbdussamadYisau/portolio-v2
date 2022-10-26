@@ -50,11 +50,10 @@ export default function Header() {
         <>
             <nav className="flex flex-col gap-4 md:flex md:flex-row md:justify-between border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]">
                 {headerDetails.map((item, index) => 
-                    <div key={index} className={`${index !== 0 ? "md:border-l pl-4 md:border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]" : "pl-4"}`}>
-                        <p  className=" text-sm text-[#8C8C8C]">//{item.label}</p>
+                    <div key={index} className={`${index !== 0 ? "md:border-l pl-4 md:border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]" : "pl-4"} ${index === 1 || index ===2 ? "hidden md:block" : "block"}`}>
+                        <p  className={`text-sm text-[#8C8C8C] ${index === 1 || index ===2 ? "hidden md:block" : "block"}`}>//{item.label}</p>
                         {index === 1 || index === 2 ?
-                            <div className="inline-block w-[200px] text-ellipsis overflow-hidden md:w-full">
-
+                            <div className="md:inline-block w-full text-ellipsis overflow-hidden hidden">
                             <Link key ={index} href={item.link} passHref className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">
                                 {item.field}
                             </Link>

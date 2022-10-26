@@ -43,10 +43,7 @@ export default function Home() {
   }
   return (
     <div
-      className="w-screen bg-[#D7D7D7] dark:bg-[#121212]"
-      style={{
-         padding: "35px 60px 20px 60px"
-      }}
+      className="w-screen bg-[#D7D7D7] dark:bg-[#121212] pr-[32px] pl-[32px] pt-[35px] md:pr-[60px] pb-[20px] md:pl-[60px]"
     >
       <Head>
         <meta charset="utf-8" />
