@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
 
-    const [country, setCountry] = useState('loading...');
     const [date, setCurrentDate] = useState(new Date());
 
     function refreshClock() {
@@ -18,24 +17,6 @@ export default function Header() {
         };
       }, []);
 
-    useEffect(() => {
-        fetch(`https://geolocation-db.com/json/${process.env.NEXT_PUBLIC_GEOLOCATION_KEY}`)
-        .then(response => {
-            if(response.ok) {
-                return response.json();
-            }
-
-            throw response;
-        })
-        .then(data => {
-            setCountry(data.country_name);
-        })
-        .catch(error => {
-            setCountry("undefined");
-        })
-
-    }, []);
-   
     const headerDetails = [
         {
             label: "portfolio",
@@ -53,12 +34,16 @@ export default function Header() {
         },
         {
             label: "location",
-            field: `${country} ${date.toLocaleString('en-US', {
+            field: `Lagos, Nigeria`,
+        },
+        {
+            label: "time",
+            field: `${date.toLocaleString('en-US', {
                 hour: 'numeric',
                 minute: 'numeric',
                 second: 'numeric',
                 hour12: true,
-            })}`,
+            })}`
         }
     ];
     return (
@@ -71,7 +56,6 @@ export default function Header() {
                             <div className="inline-block w-[200px] text-ellipsis overflow-hidden md:w-full">
 
                             <Link key ={index} href={item.link} passHref className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">
-                                {/* <a target="_blank" className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">{item.field}</a>  */}
                                 {item.field}
                             </Link>
                             </div>
