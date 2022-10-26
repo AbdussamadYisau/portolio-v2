@@ -160,11 +160,11 @@ export default function Experience() {
                   ))}
                 </ul>
 
-                <div className="flex  flex-col lg:flex-row gap-x-6">
+                <div className="flex  flex-col md:flex-row gap-x-6">
                   {experience.tools.map((tool, index) => (
                     <span
                       key={index}
-                      className={`text-[#8C8C8C] lg:pt-[8px] pl-[8px]`}
+                      className={`text-[#8C8C8C] lg:pt-[8px] pl-[-8px]`}
                     >
                       {tool}{" "}
                       <span
