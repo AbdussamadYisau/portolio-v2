@@ -29,11 +29,15 @@ export default function Links() {
               {experience.title}
             </p>
 
+            <div className="inline-block md:inline md:pl-[56px] w-[200px] text-ellipsis overflow-hidden md:w-full">
+
             <Link key={index} href={experience.link} passHref className="text-[16px] text-[#262626] dark:text-white dark:text-opacity-[.87]">
             <a className="hover:underline hover:underline-offset-8" target="_blank"> 
             {`${experience.link} `}{" "}
             </a>
             </Link>
+            </div>
+            
 
           </div>
         ))}

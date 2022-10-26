@@ -68,10 +68,15 @@ export default function Header() {
                     <div key={index} className={`${index !== 0 ? "md:border-l pl-4 md:border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]" : "pl-4"}`}>
                         <p  className=" text-sm text-[#8C8C8C]">//{item.label}</p>
                         {index === 1 || index === 2 ?
-                            <Link key ={index} href={item.link} passHref>
-                                <a target="_blank" className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">{item.field}</a> 
-                                
-                            </Link>:
+                            <div className="inline-block w-[200px] text-ellipsis overflow-hidden md:w-full">
+
+                            <Link key ={index} href={item.link} passHref className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">
+                                {/* <a target="_blank" className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">{item.field}</a>  */}
+                                {item.field}
+                            </Link>
+                            </div>
+                            
+                            :
                             <p className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">{item.field}</p>
                         }
                         
