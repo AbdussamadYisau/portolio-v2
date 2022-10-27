@@ -34,6 +34,7 @@ export default function Bio() {
             src="/profilePic.jpeg"
             width={"169px"}
             height={"169px"}
+            alt="Profile Image"
             className="rounded-full text-center"
           />
         </div>
