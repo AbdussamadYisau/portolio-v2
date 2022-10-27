@@ -32,8 +32,8 @@ export default function Bio() {
         <div className="flex justify-center">
           <Image
             src="/profilePic.jpeg"
-            width={"169px"}
-            height={"169px"}
+            width="169px"
+            height="169px"
             alt="Profile Image"
             className="rounded-full text-center"
           />
