@@ -5,10 +5,22 @@ import { useEffect, useState } from "react";
 
 export default function Header() {
 
+    let options = {
+        timeZone: 'Africa/Lagos',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hourCycle: 'h12'
+      },
+      formatter = new Intl.DateTimeFormat([], options);
+
+
     const [date, setCurrentDate] = useState(new Date());
+    const [myDate, setMyCurrentDate] = useState(formatter.format(new Date()));
 
     function refreshClock() {
         setCurrentDate(new Date());
+        setMyCurrentDate(formatter.format(new Date()));
       }
       useEffect(() => {
         const timerId = setInterval(refreshClock, 1000);
@@ -37,7 +49,16 @@ export default function Header() {
             field: `Lagos, Nigeria`,
         },
         {
-            label: "time",
+            label: "my time",
+            field: `${myDate.toLocaleString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hourCycle: 'h12',
+            }).toLocaleUpperCase()}`
+        },
+        {
+            label: "your time",
             field: `${date.toLocaleString('en-US', {
                 hour: 'numeric',
                 minute: 'numeric',
@@ -50,7 +71,8 @@ export default function Header() {
         <>
             <nav className="flex flex-col gap-4 md:flex md:flex-row md:justify-between border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]">
                 {headerDetails.map((item, index) => 
-                    <div key={index} className={`${index !== 0 ? "md:border-l pl-4 md:border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]" : "pl-4"} ${index === 1 || index ===2 ? "hidden md:block" : "block"}`}>
+                    <div key={index} className={`${index === 5 && item.field === headerDetails[4].field ? "hidden" : ""} ${index === 1 || index ===2? "hidden md:block" : "block"}`}>
+                    <div key={index} className={`${index !== 0 ? "md:border-l pl-4 md:border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]" : "pl-4"} ${index === 1 || index ===2? "hidden md:block" : "block"}`}>
                         <p  className={`text-sm text-[#8C8C8C] ${index === 1 || index ===2 ? "hidden md:block" : "block"}`}>//{item.label}</p>
                         {index === 1 || index === 2 ?
                             <div className="md:inline-block w-full text-ellipsis overflow-hidden hidden">
@@ -58,11 +80,11 @@ export default function Header() {
                                 {item.field}
                             </Link>
                             </div>
-                            
-                            :
+                            : 
                             <p className="text-base text-[#141414] dark:text-white dark:text-opacity-[.87]">{item.field}</p>
                         }
                         
+                    </div>
                     </div>
                 )}
             </nav>

@@ -7,9 +7,9 @@ export default function Experience() {
       role: "Frontend Engineer",
       period: "jan 2022 - present",
       tasks: [
-        "collaborate with design teams to implement various complex user interfaces to prioritize features for the product releases.",
+        "collaborated with design teams to implement various complex user interfaces to prioritize features for the product releases.",
         "migrated endpoints architecture from monolith to microservice.",
-        "ensured code robustness and reliability by writing unit tests.",
+        "ensured code robustness and reliability by writing tests and implementing a CI/CD flow.",
       ],
       tools: ["react.js", "next.js", "redux", "i18n"],
     },

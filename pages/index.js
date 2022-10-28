@@ -57,6 +57,7 @@ export default function Home() {
           content="Specializing in creating functional and aesthetically pleasing web and mobile experiences with a focus on clean, responsive, and pleasing content."
           property="og:description"
         />
+        <meta name="google-site-verification" content="b2HLy-GQf8r8A5X04Rq0ZfE-RzOLielb8NSRSKCSrBc" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
