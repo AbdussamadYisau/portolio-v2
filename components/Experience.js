@@ -1,6 +1,7 @@
-import Image from "next/image";
+
 
 export default function Experience() {
+
   const workExperience = [
     {
       name: "Reliance Health",
@@ -78,11 +79,11 @@ export default function Experience() {
                   : `pb-[40px]`
               }`}
             >
-              <p className="text-[16px] text-[#595959] pt-[12px] pb-[12px] xl:pb-[0px] w-full lg:w-[245px]">
+              <p className="text-[16px] text-[#595959] pt-[12px] pb-[12px] xl:pb-[0px] w-full xl:w-[245px]">
                 {experience.period}
               </p>
               <div>
-                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] dark:border-white p-2.5 w-full lg:w-[400px]">
+                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] dark:border-white p-2.5 md:w-max ">
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
                     //{experience.role.toLowerCase()}
@@ -100,17 +101,17 @@ export default function Experience() {
                   ))}
                 </ul>
 
-                <div className="flex  flex-col md:flex-row gap-x-6">
+                <div className="flex xs:flex-col flex-row gap-x-2">
                   {experience.tools.map((tool, index) => (
                     <span
                       key={index}
-                      className={`text-[#8C8C8C] pt-[8px] pl-[-8px]`}
+                      className={`text-[#8C8C8C] pt-[8px]`}
                     >
                       {tool}{" "}
                       <span
-                        className={` invisible xl:visible ${
+                        className={`invisible ${
                           index !== experience.tools.length - 1
-                            ? "visible"
+                            ? "sm:visible"
                             : "invisible"
                         }` }
                       >
@@ -138,11 +139,11 @@ export default function Experience() {
                   : `pb-[40px]`
               }`}
             >
-              <p className="text-[16px] text-[#595959] pt-[12px] w-full lg:w-[245px]">
+              <p className="text-[16px] text-[#595959] pt-[12px] w-full xl:w-[245px]">
                 {experience.period}
               </p>
               <div>
-                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] w-full dark:border-white p-2.5 lg:w-[600px]">
+                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] w-full dark:border-white p-2.5 md:w-max">
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
                     //{experience.role.toLowerCase()}
@@ -160,17 +161,17 @@ export default function Experience() {
                   ))}
                 </ul>
 
-                <div className="flex  flex-col md:flex-row gap-x-6">
+                <div className="flex xs:flex-col flex-row gap-x-2">
                   {experience.tools.map((tool, index) => (
                     <span
                       key={index}
-                      className={`text-[#8C8C8C] lg:pt-[8px] pl-[-8px]`}
+                      className={`text-[#8C8C8C] lg:pt-[8px]`}
                     >
                       {tool}{" "}
                       <span
-                        className={` invisible xl:visible ${
-                          index !== experience.tools.length - 1
-                            ? "visible"
+                        className={`invisible ${
+                          index !== experience.tools.length-1
+                            ? "sm:visible"
                             : "invisible"
                         }`}
                       >

@@ -1,6 +1,7 @@
 import Link from "next/link";
-
+import { useTheme } from "next-themes";
 export default function Links() {
+  const { theme } = useTheme();
   const linksInfo = [
     {
       title: "twitter",
@@ -29,13 +30,13 @@ export default function Links() {
               {experience.title}
             </p>
 
-            <div className="inline-block md:inline md:pl-[56px] text-ellipsis overflow-hidden w-full">
+            <div className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} inline-block md:inline text-ellipsis overflow-hidden`}>
 
-            <Link key={index} href={experience.link} passHref className="text-[16px] text-[#262626] dark:text-white dark:text-opacity-[.87]">
-            <a className="hover:underline hover:underline-offset-8" target="_blank"> 
-            {`${experience.link} `}{" "}
-            </a>
-            </Link>
+                <Link key={index} href={experience.link} passHref className="text-[16px] text-[#262626] dark:text-white dark:text-opacity-[.87]">
+                <a className="" target="_blank"> 
+                {`${experience.link} `}{" "}
+                </a>
+                </Link>
             </div>
             
 
