@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
@@ -7,6 +6,7 @@ import Experience from "../components/Experience";
 import Links from "../components/Link";
 import Box from "../components/Box";
 import Credit from "../components/Credit";
+import Head from "next/head";
 
 export default function Home() {
   const { setTheme } = useTheme();
@@ -30,35 +30,55 @@ export default function Home() {
     } else {
       setTheme("light");
     }
-
   };
 
   useEffect(() => {
     setMounted(true);
-    renderThemeChanger();  
-    // setTheme("light");  
+    renderThemeChanger();
   }, [currentDate]);
 
   if (!mounted) {
     return;
   }
   return (
-    <div
-      className=" bg-[#D7D7D7] dark:bg-[#121212] pr-[32px] pl-[32px] pt-[35px] md:pr-[60px] pb-[20px] md:pl-[60px]"
-    >
+
+      
+    <div className=" bg-[#D7D7D7] dark:bg-[#121212] pr-[32px] pl-[32px] pt-[35px] md:pr-[60px] pb-[20px] md:pl-[60px]">
+      
       <Head>
         <meta charset="utf-8" />
         <title>Portfolio - Abdussamad Yisau </title>
+        <meta content="Portfolio - Abdussamad Yisau" property="og:title" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta
           content="Specializing in creating functional and aesthetically pleasing web and mobile experiences with a focus on clean, responsive, and pleasing content."
           name="description"
         />
-        <meta content="Portfolio - Abdussamad Yisau" property="og:title" />
         <meta
           content="Specializing in creating functional and aesthetically pleasing web and mobile experiences with a focus on clean, responsive, and pleasing content."
           property="og:description"
         />
-        <meta name="google-site-verification" content="b2HLy-GQf8r8A5X04Rq0ZfE-RzOLielb8NSRSKCSrBc" />
+        <meta
+          content="Specializing in creating functional and aesthetically pleasing web and mobile experiences with a focus on clean, responsive, and pleasing content."
+          property="twitter:description"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:image"
+          content="https://www.abdussamadyisau.com/api/og?username=abdussamadyisau"
+        />
+        <meta
+          content="https://www.abdussamadyisau.com/api/og?username=abdussamadyisau"
+          property="twitter:image"
+        />
+
+        <meta content="summary_large_image" name="twitter:card" />
+        <meta
+          name="google-site-verification"
+          content="b2HLy-GQf8r8A5X04Rq0ZfE-RzOLielb8NSRSKCSrBc"
+        />
+
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -84,7 +104,6 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-
       <Header />
 
       <Bio />

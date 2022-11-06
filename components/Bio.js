@@ -1,10 +1,13 @@
 import Image from "next/image";
 import Typed from "typed.js";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
+import { useTheme } from "next-themes";
 
 
 export default function Bio() {
-     // Create Ref element.
+  const {theme} = useTheme();
+  // Create Ref element.
   const el = useRef(null);
 
   useEffect(() => {
@@ -16,10 +19,9 @@ export default function Bio() {
       backSpeed: 100,
       backDelay: 100,
       showCursor: true,
-      autoInsertCss: true
+      autoInsertCss: true,
     });
 
-    
     // Destropying
     return () => {
       typed.destroy();
@@ -41,19 +43,35 @@ export default function Bio() {
 
         <div className="pt-8 flex flex-col items-center md:items-start">
           <div className="flex flex-row">
-          <span className="text-xl md:text-6xl dark:text-white dark:text-opacity-[.87]" ref={el}></span>
+            <span
+              className="text-xl md:text-6xl dark:text-white dark:text-opacity-[.87]"
+              ref={el}
+            ></span>
           </div>
-          <p className="text-xl md:text-2xl text-[#8C8C8C]">//fullstack developer</p>
+          <p className="text-xl md:text-2xl text-[#8C8C8C]">
+            //fullstack developer
+          </p>
         </div>
       </div>
 
       <div className="border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]">
         <p className="text-[16px] text-[#8C8C8C]">//about</p>
-        <p className="text-[16px] pt-[24px] text-[#1F1F1F] dark:text-[#FFFFFF] dark:text-opacity-[.87] w-1/2">
-          hi, i’m abdussamad, my friends call me sammie. i enjoy building
-          dynamic, creative products from start to finish, focused on
-          developing intuitive experiences that constantly grow and improve
-          based on user metrics.
+        <p className="text-[16px] pt-[24px] text-[#1F1F1F] dark:text-[#FFFFFF] dark:text-opacity-[.87] w-full md:w-2/4">
+          hi, i’m abdussamad, my friends call me sammie. i enjoy consuming,
+          dissecting and creating experiences- that could be anything from {" "}
+          <span className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} inline-block md:inline text-ellipsis overflow-hidden`}>
+          <Link href={'https://en.wikipedia.org/wiki/Grey%27s_Anatomy'} passHref>
+          <a target="_blank">
+            watching Grey’s anatomy,
+          </a>
+          </Link>
+          </span> <span className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} inline-block md:inline text-ellipsis overflow-hidden`}>
+            <Link href={'https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD?si=2121edee44ea4e79'} passHref>
+            <a target="_blank">
+            listening to Yé, 
+            </a></Link></span> discussing the concept of
+          eternity with friends to curating and building visually stunning and performant mobile applications,
+          websites etc.
         </p>
       </div>
     </div>

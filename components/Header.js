@@ -29,7 +29,8 @@ export default function Header() {
   const headerDetails = [
     {
       label: "portfolio",
-      field: "sammie_boy.dev",
+      field: ".ay",
+      link: "https://abdussamadyisau.com"
     },
     {
       label: "email",
@@ -109,8 +110,8 @@ export default function Header() {
                 </p>
               
 
-              {index === 1 || index === 2 ? (
-                <div className="md:inline-block w-full text-ellipsis overflow-hidden hidden">
+              {index === 0 ||index === 1 || index === 2 ? (
+                <div className={` ${index === 0 ? '': 'hidden md:inline-block'}  w-full text-ellipsis overflow-hidden `}>
                   <Link
                     key={index}
                     href={item.link}
