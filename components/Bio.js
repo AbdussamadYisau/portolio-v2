@@ -59,13 +59,13 @@ export default function Bio() {
         <p className="text-[16px] pt-[24px] text-[#1F1F1F] dark:text-[#FFFFFF] dark:text-opacity-[.87] w-full md:w-2/4">
           hi, i’m abdussamad, my friends call me sammie. i enjoy consuming,
           dissecting and creating experiences- that could be anything from {" "}
-          <span className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} inline-block md:inline text-ellipsis overflow-hidden`}>
+          <span className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} md:inline text-ellipsis overflow-hidden`}>
           <Link href={'https://en.wikipedia.org/wiki/Grey%27s_Anatomy'} passHref>
           <a target="_blank">
             watching Grey’s anatomy,
           </a>
           </Link>
-          </span> <span className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} inline-block md:inline text-ellipsis overflow-hidden`}>
+          </span> <span className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} md:inline text-ellipsis overflow-hidden`}>
             <Link href={'https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD?si=2121edee44ea4e79'} passHref>
             <a target="_blank">
             listening to Yé, 
