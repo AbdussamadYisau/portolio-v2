@@ -9,14 +9,14 @@ export default function CustomCursor() {
         document.addEventListener("mousemove", (e) => {
             const {clientX, clientY} = e;
 
-            const mouseX = clientX - cursorRef.current.clientWidth;
+            const mouseX = clientX - cursorRef.current.clientWidth / 2;
             const mouseY = clientY - cursorRef.current.clientHeight;
 
             cursorRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
         })
     }, []);
     return (
-      <div className={`${theme === 'dark' ? 'app-cursor-dark' : 'app-cursor'}`} ref={cursorRef}/>
+      <div className={`hidden lg:block ${theme === 'dark' ? 'app-cursor-dark' : 'app-cursor'}`} ref={cursorRef}/>
     );
   }
   
