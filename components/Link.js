@@ -32,10 +32,8 @@ export default function Links() {
 
             <div className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} inline-block md:inline text-ellipsis overflow-hidden`}>
 
-                <Link key={index} href={experience.link} passHref className="text-[16px] text-[#262626] dark:text-white dark:text-opacity-[.87]">
-                <a className="" target="_blank"> 
+                <Link key={index} href={experience.link} passHref className="text-[16px] text-[#262626] dark:text-white dark:text-opacity-[.87]" target={"_blank"}> 
                 {`${experience.link} `}{" "}
-                </a>
                 </Link>
             </div>
             

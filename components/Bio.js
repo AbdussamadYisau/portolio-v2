@@ -34,8 +34,8 @@ export default function Bio() {
         <div className="flex justify-center">
           <Image
             src="/profilePic.jpeg"
-            width="169px"
-            height="169px"
+            width={169}
+            height={169}
             alt="Profile Image"
             className="rounded-full text-center"
           />
@@ -60,16 +60,16 @@ export default function Bio() {
           hi, i’m abdussamad, my friends call me sammie. i enjoy consuming,
           dissecting and creating experiences- that could be anything from {" "}
           <span className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} md:inline text-ellipsis overflow-hidden`}>
-          <Link href={'https://en.wikipedia.org/wiki/Grey%27s_Anatomy'} passHref>
-          <a target="_blank">
+          <Link href={'https://en.wikipedia.org/wiki/Grey%27s_Anatomy'} passHref target={"_blank"}>
+         
             watching Grey’s anatomy,
-          </a>
+          
           </Link>
           </span> <span className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'} md:inline text-ellipsis overflow-hidden`}>
-            <Link href={'https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD?si=2121edee44ea4e79'} passHref>
-            <a target="_blank">
+            <Link href={'https://open.spotify.com/track/2lEl1iNGpz9r2B7R5BqXSD?si=2121edee44ea4e79'} passHref legacyBehavior>
+           
             listening to Yé, 
-            </a></Link></span> discussing the concept of
+            </Link></span> discussing the concept of
           eternity with friends to curating and building visually stunning and performant mobile applications,
           websites etc.
         </p>
