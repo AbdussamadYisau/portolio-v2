@@ -4,6 +4,10 @@
 @tailwind utilities;
 
 
+html, body, * {
+cursor: none;
+}
+
 html,
 body {
   color: #000;
@@ -94,4 +98,28 @@ a {
 .hover-underline-animation:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+.app-cursor {
+  z-index: 1000;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #121212;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  position: fixed;
+}
+
+.app-cursor-dark {
+  z-index: 1000;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #D7D7D7;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  position: fixed;
 }

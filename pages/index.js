@@ -7,6 +7,8 @@ import Links from "../components/Link";
 import Box from "../components/Box";
 import Credit from "../components/Credit";
 import Head from "next/head";
+import CustomCursor from "../components/Cursor";
+
 
 export default function Home() {
   const { setTheme } = useTheme();
@@ -44,6 +46,7 @@ export default function Home() {
 
       
     <div className=" bg-[#D7D7D7] dark:bg-[#121212] pr-[32px] pl-[32px] pt-[35px] md:pr-[60px] pb-[20px] md:pl-[60px]">
+      <CustomCursor />
       
       <Head>
         <meta charset="utf-8" />
@@ -65,10 +68,10 @@ export default function Home() {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://www.abdussamadyisau.com/api/og?username=abdussamadyisau"
+          content={'./og.png'}
         />
         <meta
-          content="https://www.abdussamadyisau.com/api/og?username=abdussamadyisau"
+          content={'./og.png'}
           property="twitter:image"
         />
 
