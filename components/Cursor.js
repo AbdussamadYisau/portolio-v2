@@ -1,22 +1,33 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-export default function CustomCursor() {
-    const cursorRef = useRef(null);
-    const {theme} = useTheme();
-
+const  useMousePosition = () => {
+    const [mousePosition, setMousePosition] = useState({ x: null, y: null });
+  
     useEffect(() => {
-        document.addEventListener("mousemove", (e) => {
-            const {clientX, clientY} = e;
-
-            const mouseX = clientX - cursorRef.current.clientWidth / 2;
-            const mouseY = clientY - cursorRef.current.clientHeight;
-
-            cursorRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-        })
+      const mouseMoveHandler = (event) => {
+        const { clientX, clientY } = event;
+        setMousePosition({ x: clientX, y: clientY });
+      };
+      document.addEventListener("mousemove", mouseMoveHandler);
+  
+      return () => {
+        document.removeEventListener("mousemove", mouseMoveHandler);
+      };
     }, []);
+  
+    return mousePosition;
+}
+
+export default function CustomCursor(){
+    const { x, y } = useMousePosition();
+    const {theme} = useTheme();
     return (
-      <div className={`hidden lg:block ${theme === 'dark' ? 'app-cursor-dark' : 'app-cursor'}`} ref={cursorRef}/>
+      <>
+        <div style={{ left: `${x}px`, top: `${y}px` }} className={`hidden lg:block ${theme === 'dark' ? 'ring' : 'ring-dark'}`}></div>
+        <div className={`hidden lg:block ${theme === 'dark' ? 'dot' : 'dot-dark'}`} style={{ left: `${x}px`, top: `${y}px` }}></div>
+      </>
     );
-  }
+  };
+
   
