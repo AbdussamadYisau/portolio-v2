@@ -1,22 +1,25 @@
-
+import React from "react";
+import { Tooltip } from 'react-tooltip'
 
 export default function Experience() {
 
   const workExperience = [
     {
       name: "Reliance Health",
+      link: "https://www.getreliancehealth.com/",
       role: "Frontend Engineer",
       period: "jan 2022 - present",
       tasks: [
-        "collaborated with design teams to implement various complex user interfaces to prioritize features for the product releases.",
-        "migrated endpoints architecture from monolith to microservice.",
-        "ensured code robustness and reliability by writing tests and implementing a CI/CD flow.",
+        "collaborated with design teams to implement various complex user interfaces to prioritize features for the product releases, whilst improving user engagement and retention, resulting in a 20% and 15% increase respectively.",
+        "migrated endpoints architecture from monolith to microservices, improving scalability and performance",
+        "developed and implemented consultations feature for Telemedicine Platform, which allow 16,000 consultations per month across Nigeria and Egypt for patients from the comfort of their homes.",
       ],
       tools: ["react.js", "next.js", "redux", "i18n"],
     },
 
     {
       name: "Babbangona",
+      link: "https://babbangona.com/",
       role: "Software Engineer",
       period: "dec 2021 - may 2022",
       tasks: [
@@ -28,6 +31,7 @@ export default function Experience() {
 
     {
       name: "YediTech",
+      link: "https://play.google.com/store/apps/details?id=com.illminew&pli=1",
       role: "mobile engineer - contract",
       period: "jun 2021 - aug 2021",
       tasks: [
@@ -71,6 +75,8 @@ export default function Experience() {
 
         <div className="pt-[16px]">
           {workExperience.map((experience, index) => (
+            <>
+
             <div
               key={index}
               className={`flex flex-col lg:flex-row justify-start gap-x-[158px] ${
@@ -78,6 +84,11 @@ export default function Experience() {
                   ? `pb-[50px]`
                   : `pb-[40px]`
               }`}
+              data-tooltip-id={`${experience?.link ? "my-tooltip" : null}`} 
+              data-tooltip-content={`${experience?.link ? experience.link : null}`}
+              onClick={() => {
+                experience?.link ? window.open(experience?.link, "_blank") : null
+              }}
             >
               <p className="text-[16px] text-[#595959] pt-[12px] pb-[12px] xl:pb-[0px] w-full xl:w-[245px]">
                 {experience.period}
@@ -122,8 +133,14 @@ export default function Experience() {
                 </div>
               </div>
             </div>
+
+            {experience?.link ?  <Tooltip id="my-tooltip" /> : null }
+            </>
           ))}
+
+       
         </div>
+        
       </div>
 
       <div className="flex flex-col gap-6 border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12] pt-10">
@@ -143,7 +160,9 @@ export default function Experience() {
                 {experience.period}
               </p>
               <div>
-                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] w-full dark:border-white p-2.5 md:w-max">
+                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] w-full dark:border-white p-2.5 md:w-max"
+                
+                >
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
                     //{experience.role.toLowerCase()}

@@ -8,7 +8,7 @@ export default function Credit() {
     return (
       <div className="flex w-full flex-col text-center items-center md:flex-row justify-center md:gap-x-4 mb-[40px]">
         <p className="text-[#595959]">designed by <span className={`${theme === 'dark' ? 'hover-underline-dark-animation' : 'hover-underline-animation'}`}>
-          <Link href={`https://abimbolapelumi.webflow.io/`} passHref target={"_blank"}> 
+          <Link href={`https://pelumiabimbola.webflow.io/`} passHref target={"_blank"}> 
          oluwapelumi abimbola
            
           </Link>
