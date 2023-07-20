@@ -2,22 +2,21 @@ import { ImageResponse } from '@vercel/og';
 import { NextRequest } from "next/server";
 
 export const config = {
-	runtime: 'experimental-edge',
+	runtime: 'edge',
 };
 
-const fontNormal = fetch(new URL("../../assets/Inter-Medium.ttf", import.meta.url)).then((res) => res.arrayBuffer());
-const fontBold = fetch(new URL("../../assets/Inter-Black.ttf", import.meta.url)).then((res) => res.arrayBuffer());
+// const fontNormal = fetch(new URL("../../assets/Inter-Medium.ttf", import.meta.url)).then((res) => res.arrayBuffer());
+// const fontBold = fetch(new URL("../../assets/Inter-Black.ttf", import.meta.url)).then((res) => res.arrayBuffer());
 
 export default async function (req) {
 	try{
-		const fontData = await fontNormal;
-		const fontBoldData = await fontBold;
+		// const fontData = await fontNormal;
+		// const fontBoldData = await fontBold;
 		const { searchParams } = req.nextUrl;
 	
 		const titlePost = searchParams.get('title');
 		const subtitlePost = searchParams.get('subtitle');
-		// http://localhost:3000/api/og?title=titleishere
-		// http://localhost:3000/api/og?title=opengraph&subtitle=Dynamic%20image%20using%20edge%20function
+
 	
 		return new ImageResponse(
 			(
@@ -111,20 +110,7 @@ export default async function (req) {
 			{
 				width: 1200,
 				height: 600,
-				fonts: [
-			{
-					name: "Inter",
-					data: fontData,
-					weight: 400,
-					style: "normal",
-			},
-			{
-					name: "Inter",
-					data: fontBoldData,
-					weight: 700,
-					style: "normal",
-			},
-	],
+				
 			},
 		);
 	} catch (e){

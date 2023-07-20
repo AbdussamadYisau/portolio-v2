@@ -84,17 +84,22 @@ export default function Experience() {
                   ? `pb-[50px]`
                   : `pb-[40px]`
               }`}
-              data-tooltip-id={`${experience?.link ? "my-tooltip" : null}`} 
-              data-tooltip-content={`${experience?.link ? experience.link : null}`}
-              onClick={() => {
-                experience?.link ? window.open(experience?.link, "_blank") : null
-              }}
+              
             >
               <p className="text-[16px] text-[#595959] pt-[12px] pb-[12px] xl:pb-[0px] w-full xl:w-[245px]">
                 {experience.period}
               </p>
-              <div>
-                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] dark:border-white p-2.5 md:w-max ">
+              <div
+             
+              >
+                <p className="text-[16px] dark:text-white dark:text-opacity-[.87] border border-[#1F1F1F] dark:border-white p-2.5 md:w-max anchor-select "
+                
+                data-tooltip-id={experience?.link ? "my-tooltip" : null}
+                data-tooltip-content={experience?.link}
+                onClick={() => {
+                  experience?.link ? window.open(experience?.link, "_blank") : null
+                }}
+                >
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
                     //{experience.role.toLowerCase()}
@@ -134,7 +139,7 @@ export default function Experience() {
               </div>
             </div>
 
-            {experience?.link ?  <Tooltip id="my-tooltip" /> : null }
+            {experience?.link ?  <Tooltip id="my-tooltip" anchorSelect=".anchor-select" /> : <Tooltip id="misplace" /> }
             </>
           ))}
 
