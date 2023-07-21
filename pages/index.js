@@ -8,6 +8,8 @@ import Box from "../components/Box";
 import Credit from "../components/Credit";
 import Head from "next/head";
 import CustomCursor from "../components/Cursor";
+import Projects from "../components/Projects";
+
 
 export default function Home() {
   const { setTheme } = useTheme();
@@ -82,6 +84,8 @@ export default function Home() {
       <Bio />
 
       <Experience />
+
+      <Projects />
 
       <Links />
 
