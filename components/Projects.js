@@ -2,6 +2,11 @@ import { Tooltip } from 'react-tooltip'
 export default function Projects() {
 
     const projectDetails = [
+        { 
+            name: "Frontend Practice Implementations",
+            link: "https://frontend-practice-two.vercel.app/",
+            tags: ["personal", "implementation", "2024"]
+        },
         {
             name: "Tag Africa",
             link: "https://www.tag-africa.org/",
@@ -14,17 +19,7 @@ export default function Projects() {
             tags: ["personal", "frontend mentor", "2023"]
         },
 
-        {
-            name: "Advanced Note",
-            link: "https://advanced-note-fcpsgw850-abdussamadyisau.vercel.app/",
-            tags: ["personal", "dark mode", "2022"]
-        },
-
-        { 
-            name: "AirBnB Clone",
-            link: "https://zst-assessment-livid.vercel.app/",
-            tags: ["personal", "implementation", "2023"]
-        }
+       
     ]
     return (
         <>

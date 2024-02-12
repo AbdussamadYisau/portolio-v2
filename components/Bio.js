@@ -49,7 +49,7 @@ export default function Bio() {
             ></span>
           </div>
           <p className="text-xl md:text-2xl text-[#8C8C8C]">
-            //fullstack developer
+            //Frontend Engineer
           </p>
         </div>
       </div>

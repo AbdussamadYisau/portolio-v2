@@ -55,7 +55,6 @@ a {
 
 
 .hover-underline-dark-animation {
-  /* display: inline-block; */
   position: relative;
 }
 
@@ -69,7 +68,7 @@ a {
   left: 0;
   background-color: #fff;
   transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  transition: transform .5s ease-out;
 }
 
 .hover-underline-dark-animation:hover:after {
@@ -79,7 +78,7 @@ a {
 
 
 .hover-underline-animation {
-  /* display: inline-block; */
+  
   position: relative;
 }
 
@@ -93,13 +92,14 @@ a {
   left: 0;
   background-color: #262626;
   transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  transition: transform .5s ease-out;
 }
 
 .hover-underline-animation:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
 
 .app-cursor {
   z-index: 1000;
