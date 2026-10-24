@@ -1,3 +1,22 @@
+import { useId, useState } from 'react';
+
+function Contributions({ items }) {
+  const [open, setOpen] = useState(false);
+  const [keyboard, setKeyboard] = useState(false);
+  const id = useId();
+  return <div className="experience-details contribution-accordion" data-open={open} data-keyboard={keyboard}>
+    <button className="contribution-toggle" aria-expanded={open} aria-controls={id}
+      onPointerDown={() => setKeyboard(false)}
+      onKeyDown={event => { if (['Enter', ' '].includes(event.key)) setKeyboard(true); }}
+      onClick={() => setOpen(value => !value)}>
+      <span>Selected contributions</span><span className="contribution-indicator" aria-hidden="true"><span /><span /></span>
+    </button>
+    <div id={id} className="contribution-panel" aria-hidden={!open} {...(!open ? { inert: '' } : {})}>
+      <div className="contribution-clip"><ul>{items.map(item => <li key={item}>{item}</li>)}</ul></div>
+    </div>
+  </div>;
+}
+
 const featuredRoles = [
   {
     company: 'Reliance Health',
@@ -41,7 +60,7 @@ export default function ExperienceTimeline() {
     <div className="experience-featured">{featuredRoles.map((role, index) => <article className="experience-entry" key={role.company}>
       <div className="experience-date"><span className="experience-index">0{index + 1}</span><span>{role.period}</span></div>
       <div className="experience-body"><div className="experience-role-heading"><h3>{role.company}</h3><span className="experience-type">{index === 0 ? 'HEALTHTECH' : 'COMMERCE'}</span></div><p className="experience-title">{role.title}</p>{role.context && <p className="experience-context">{role.context}</p>}<h4>{role.theme}</h4><p className="experience-summary">{role.summary}</p>
-      <details className="experience-details"><summary><span>Selected contributions</span><span className="experience-expand" aria-hidden="true" /></summary><ul>{role.contributions.map(item => <li key={item}>{item}</li>)}</ul></details>
+      <Contributions items={role.contributions} />
       <ul className="experience-skills" aria-label={`${role.company} skills`}>{role.skills.map(skill => <li key={skill}>{skill}</li>)}</ul></div>
     </article>)}</div>
     <div className="earlier-heading"><span>BEFORE THAT</span><span>THE FOUNDATIONS</span></div>

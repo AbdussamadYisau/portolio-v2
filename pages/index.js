@@ -1,4 +1,6 @@
 import Head from "next/head";
+import AppearanceMenu from "../components/AppearanceMenu";
+import LagosClock from "../components/LagosClock";
 import StarIcon from "../components/StarIcon";
 import PhotoJournal from "../components/PhotoJournal";
 import LiveInterests from "../components/LiveInterests";
@@ -48,8 +50,9 @@ export default function Home() {
     } catch {}
     const tick = () => setNow(new Date());
     tick();
-    const timer = setInterval(tick, 1000);
-    return () => clearInterval(timer);
+    const timer = setInterval(tick, 60000);
+    document.addEventListener("visibilitychange", tick);
+    return () => { clearInterval(timer); document.removeEventListener("visibilitychange", tick); };
   }, []);
   function changeTheme(value) {
     setTheme(value);
@@ -63,15 +66,6 @@ export default function Home() {
         ? "dark"
         : "light"
       : theme;
-  const lagosTime = now
-    ? new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Africa/Lagos",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hourCycle: "h23",
-      }).format(now)
-    : "--:--:--";
   useEffect(() => {
     document.documentElement.style.colorScheme = resolvedTheme;
   }, [resolvedTheme]);
@@ -88,6 +82,7 @@ export default function Home() {
         className="portfolio signal font-grotesk"
         data-theme={resolvedTheme}
       >
+        <a className="skip-link" href="#main-content">Skip to content</a>
         <div className="page-shell">
           <header className="site-header glass-menu">
             <a
@@ -105,15 +100,8 @@ export default function Home() {
               <a href="#interests">Interests</a>
               <a href="#contact">Reach me ↗</a>
             </nav>
-            <div className="lagos-clock">
-              <span className="clock-dot" />{" "}
-              <span>
-                MY TIME · LAGOS
-                <time dateTime={now ? now.toISOString() : undefined}>
-                  {lagosTime} <small>WAT</small>
-                </time>
-              </span>
-            </div>
+            <LagosClock />
+            <AppearanceMenu theme={theme} onChange={changeTheme} />
           </header>
           <section
             className="appearance-panel"
@@ -141,7 +129,7 @@ export default function Home() {
               </span>
             </fieldset>
           </section>
-          <main>
+          <main id="main-content" tabIndex={-1}>
             <section className="hero" aria-labelledby="hero-title">
               <div className="hero-meta">
                 <span>PORTFOLIO / SELECTED WORK</span>
@@ -149,7 +137,7 @@ export default function Home() {
               </div>
               <div className="hero-composition">
                 <div className="hero-copy">
-                  <p className="eyebrow">HELLO, I’M ABDUSSAMAD YISAU.</p>
+                  <p className="eyebrow hero-introduction"><span>HELLO, I’M</span><strong>Abdussamad Yisau.</strong></p>
                   <h1 id="hero-title">
                     Building
                     <br />
@@ -195,7 +183,7 @@ export default function Home() {
                     rel="noreferrer"
                     key={project.name}
                   >
-                    <div className={`project-art ${project.art}`}>
+                    <div className={`project-art ${project.art}`} aria-hidden="true">
                       <span className="art-index">
                         EXPERIMENT_00{index + 1}
                       </span>

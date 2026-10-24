@@ -22,6 +22,7 @@ export default function ScrollSpotifyPlayer({ url }) {
   useEffect(() => {
     let disposed = false, watchdog, readyTimeout;
     let ready = false, started = false, finished = false;
+    setStatus('loading');
     const host = document.createElement('div');
     mount.current.appendChild(host);
     const stop = () => { controller.current?.pause(); };
@@ -35,7 +36,7 @@ export default function ScrollSpotifyPlayer({ url }) {
       watchdog = setTimeout(() => { if (!disposed && !started) setStatus('blocked'); }, 5000);
     };
     play.current = attempt;
-    readyTimeout = setTimeout(() => { if (!disposed && !controller.current) setStatus('unavailable'); }, 15000);
+    readyTimeout = setTimeout(() => { if (!disposed && !ready) setStatus('unavailable'); }, 15000);
     loadSpotifyApi().then(api => {
       if (disposed) return;
       api.createController(host, { url, width: '100%', height: 152 }, player => {
@@ -65,5 +66,6 @@ export default function ScrollSpotifyPlayer({ url }) {
       mount.current?.replaceChildren();
     };
   }, [url]);
-  return <div className="spotify-listen scroll-spotify-player"><div ref={mount} /><p className="integration-note" role="status">{status === 'playing' ? 'Playing · pauses at 10 seconds.' : status === 'blocked' ? 'Playback did not start. Tap play to try again.' : status === 'done' ? 'Ten-second listen complete.' : status === 'unavailable' ? 'Player unavailable. Open this track on Spotify instead.' : status === 'loading' ? 'Loading Spotify player…' : 'Press play for a ten-second listen.'}</p>{status !== 'unavailable' && <button className="integration-button" disabled={status === 'loading'} onClick={() => { if (status === 'playing') { controller.current?.pause(); setStatus('paused'); } else play.current?.(); }}>{status === 'playing' ? 'PAUSE' : 'PLAY 10 SECONDS ↗'}</button>}<p className="integration-note">Spotify controls audio availability; a preview may be an excerpt from elsewhere in the song.</p></div>;
+  const fallbackEmbed = url.replace('/track/', '/embed/track/');
+  return <div className="spotify-listen scroll-spotify-player"><div ref={mount} className="spotify-controller-mount" />{status === 'unavailable' && <iframe title="Spotify track player" src={fallbackEmbed} width="100%" height="152" allow="encrypted-media; fullscreen; picture-in-picture" loading="lazy" />}{['loading', 'starting', 'blocked'].includes(status) && <p className="integration-note" role="status">{status === 'loading' ? 'Loading player…' : status === 'starting' ? 'Starting…' : 'Couldn’t start playback. Try again.'}</p>}{status !== 'unavailable' && <button className="integration-button" disabled={status === 'loading' || status === 'starting'} onClick={() => { if (status === 'playing') { controller.current?.pause(); setStatus('paused'); } else play.current?.(); }}>{status === 'playing' ? 'PAUSE' : 'PLAY 10 SECONDS ↗'}</button>}</div>;
 }
