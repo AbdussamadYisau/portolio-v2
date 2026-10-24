@@ -77,6 +77,24 @@ export default function Home() {
           name="description"
           content="Frontend engineering, interfaces, and experiments by Abdussamad Yisau. Lagos, Nigeria."
         />
+        <link rel="canonical" href="https://abdussamadyisau.xyz/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Abdussamad Yisau" />
+        <meta property="og:locale" content="en_NG" />
+        <meta property="og:url" content="https://abdussamadyisau.xyz/" />
+        <meta property="og:title" content="Abdussamad Yisau — Frontend Engineer" />
+        <meta property="og:description" content="Building digital things with intention. Explore my work, experience, and life outside the code." />
+        <meta property="og:image" content="https://abdussamadyisau.xyz/social-preview.png" />
+        <meta property="og:image:secure_url" content="https://abdussamadyisau.xyz/social-preview.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Abdussamad Yisau — Building digital things. Frontend engineer in Lagos, Nigeria." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Abdussamad Yisau — Frontend Engineer" />
+        <meta name="twitter:description" content="Building digital things with intention. Explore my work, experience, and life outside the code." />
+        <meta name="twitter:image" content="https://abdussamadyisau.xyz/social-preview.png" />
+        <meta name="twitter:image:alt" content="Abdussamad Yisau — Building digital things. Frontend engineer in Lagos, Nigeria." />
       </Head>
       <div
         className="portfolio signal font-grotesk"

@@ -1,8 +1,4 @@
-# Allow all crawlers
-User-agent: Twitterbot
-Disallow:
-
 User-agent: *
-Disallow: 
+Allow: /
 
-Sitemap: https://abdussamadyisau.com/sitemap.xml
+Sitemap: https://abdussamadyisau.xyz/sitemap.xml
