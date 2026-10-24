@@ -1,97 +1,355 @@
-import { useTheme } from "next-themes";
-import { useState, useEffect } from "react";
-import Header from "../components/Header";
-import Bio from "../components/Bio";
-import Experience from "../components/Experience";
-import Links from "../components/Link";
-import Box from "../components/Box";
-import Credit from "../components/Credit";
 import Head from "next/head";
-import CustomCursor from "../components/Cursor";
-import Projects from "../components/Projects";
+import PhotoJournal from "../components/PhotoJournal";
+import LiveInterests from "../components/LiveInterests";
+import ExperienceTimeline from "../components/ExperienceTimeline";
+import { useEffect, useState } from "react";
 
+const projects = [
+  {
+    name: "Frontend Practice",
+    type: "Interface experiments",
+    year: "2024",
+    url: "https://frontend-practice-two.vercel.app/",
+    art: "practice",
+    caption: "Form follows curiosity.",
+    description:
+      "A collection of frontend implementations exploring layout, interaction, and visual detail.",
+  },
+  {
+    name: "Tag Africa",
+    type: "Professional services / Website",
+    year: "2023",
+    url: "https://www.tag-africa.org/",
+    art: "africa",
+    caption: "Ideas without borders.",
+    description: "A landing page for a professional services organisation.",
+  },
+  {
+    name: "Dictionary",
+    type: "Personal project / Web app",
+    year: "2023",
+    url: "https://dictionary.abdussamadyisau.com",
+    art: "dictionary",
+    caption: "word /wɜːd/",
+    description:
+      "A dictionary application built as a Frontend Mentor challenge.",
+  },
+];
 
 export default function Home() {
-  const { setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const currentHour = currentDate.getHours();
-
-  function refreshClock() {
-    setCurrentDate(new Date());
-  }
+  const [theme, setTheme] = useState("auto");
+  const [now, setNow] = useState(null);
   useEffect(() => {
-    const timerId = setInterval(refreshClock, 1000);
-    return function cleanup() {
-      clearInterval(timerId);
-    };
+    try {
+      const saved = JSON.parse(localStorage.getItem("ay-appearance") || "{}");
+      if (["auto", "light", "dark"].includes(saved.theme))
+        setTheme(saved.theme);
+    } catch {}
+    const tick = () => setNow(new Date());
+    tick();
+    const timer = setInterval(tick, 1000);
+    return () => clearInterval(timer);
   }, []);
-
-  const renderThemeChanger = () => {
-    if (currentHour <= 7 || currentHour >= 18) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  };
-
-  useEffect(() => {
-    setMounted(true);
-    renderThemeChanger();
-  }, [currentDate]);
-
-  if (!mounted) {
-    return;
+  function changeTheme(value) {
+    setTheme(value);
+    try {
+      localStorage.setItem("ay-appearance", JSON.stringify({ theme: value }));
+    } catch {}
   }
+  const resolvedTheme =
+    theme === "auto"
+      ? now && (now.getHours() < 7 || now.getHours() >= 19)
+        ? "dark"
+        : "light"
+      : theme;
+  const lagosTime = now
+    ? new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Africa/Lagos",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hourCycle: "h23",
+      }).format(now)
+    : "--:--:--";
+  useEffect(() => {
+    document.documentElement.style.colorScheme = resolvedTheme;
+  }, [resolvedTheme]);
   return (
-    <div className=" bg-[#D7D7D7] dark:bg-[#121212] pr-[32px] pl-[32px] pt-[35px] md:pr-[60px] pb-[20px] md:pl-[60px]">
-      <CustomCursor />
-
+    <>
       <Head>
+        <title>Abdussamad Yisau — Frontend Engineer</title>
         <meta
-          name="google-site-verification"
-          content="b2HLy-GQf8r8A5X04Rq0ZfE-RzOLielb8NSRSKCSrBc"
-        />
-
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap"
-          rel="stylesheet"
+          name="description"
+          content="Frontend engineering, interfaces, and experiments by Abdussamad Yisau. Lagos, Nigeria."
         />
       </Head>
-      <Header />
-
-      <Bio />
-
-      <Experience />
-
-      <Projects />
-
-      <Links />
-
-      <Box />
-
-      <Credit />
-    </div>
+      <div
+        className="portfolio signal font-grotesk"
+        data-theme={resolvedTheme}
+      >
+        <div className="page-shell">
+          <header className="site-header glass-menu">
+            <a
+              className="wordmark"
+              href="#"
+              aria-label="Abdussamad Yisau, home"
+            >
+              AY<span>®</span>
+            </a>
+            <nav aria-label="Main navigation">
+              <a href="#interests">Interests</a>
+              <a href="#roles">Experience</a>
+              <a href="#work">
+                Projects <sup>03</sup>
+              </a>
+              <a href="#contact">Reach me ↗</a>
+            </nav>
+            <div className="lagos-clock">
+              <span className="clock-dot" />{" "}
+              <span>
+                MY TIME · LAGOS
+                <time dateTime={now ? now.toISOString() : undefined}>
+                  {lagosTime} <small>WAT</small>
+                </time>
+              </span>
+            </div>
+          </header>
+          <section
+            className="appearance-panel"
+            aria-label="Appearance settings"
+          >
+            <fieldset className="theme-options">
+              <legend>LIGHT / DARK</legend>
+              {["auto", "light", "dark"].map((value) => (
+                <button
+                  key={value}
+                  aria-pressed={theme === value}
+                  onClick={() => changeTheme(value)}
+                >
+                  {value === "auto"
+                    ? "◷ Auto"
+                    : value === "light"
+                      ? "☀ Light"
+                      : "◐ Dark"}
+                </button>
+              ))}
+              <span className="auto-note">
+                {theme === "auto"
+                  ? "Follows your local time · light 07–19"
+                  : "Your preference, remembered"}
+              </span>
+            </fieldset>
+          </section>
+          <main>
+            <section className="hero" aria-labelledby="hero-title">
+              <div className="hero-meta">
+                <span>PORTFOLIO / SELECTED WORK</span>
+                <span>LAGOS, NG · 06°27′ N 03°23′ E</span>
+              </div>
+              <div className="hero-composition">
+                <div className="hero-copy">
+                  <p className="eyebrow">HELLO, I’M ABDUSSAMAD YISAU.</p>
+                  <h1 id="hero-title">
+                    Building
+                    <br />
+                    <span>digital</span>
+                    <br />
+                    things<span className="period">.</span>
+                  </h1>
+                </div>
+                <div className="hero-side">
+                  <div className="hero-symbol" aria-hidden="true">
+                    ✳
+                  </div>
+                  <p>
+                    Frontend engineer.
+                    <br />
+                    Curious by default.
+                    <br />
+                    Particular about the details.
+                  </p>
+                  <a className="work-link" href="#work">
+                    EXPLORE MY WORK <span>↙</span>
+                  </a>
+                </div>
+              </div>
+              <div className="hero-bottom">
+                <span>CODE WITH INTENTION. BUILD WITH FEELING.</span>
+                <span>SCROLL TO EXPLORE ↓</span>
+              </div>
+            </section>
+            <section id="work" className="work-section">
+              <div className="section-heading">
+                <h2>
+                  <span>01 /</span> Selected work
+                </h2>
+                <span>AN ONGOING EXPLORATION, 2023—2024</span>
+              </div>
+              <div className="project-grid">
+                {projects.map((project, index) => (
+                  <a
+                    className="project"
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={project.name}
+                  >
+                    <div className={`project-art ${project.art}`}>
+                      <span className="art-index">
+                        EXPERIMENT_00{index + 1}
+                      </span>
+                      {index === 0 ? (
+                        <div className="practice-art">
+                          <span>F</span>
+                          <span>
+                            P<span className="tiny-star">✳</span>
+                          </span>
+                        </div>
+                      ) : index === 1 ? (
+                        <div className="africa-art">
+                          tag<span>africa↗</span>
+                        </div>
+                      ) : (
+                        <div className="dictionary-art">
+                          <span>
+                            Aa<span>↗</span>
+                          </span>
+                          <small>
+                            THE BEAUTY OF
+                            <br />
+                            FINDING THE RIGHT WORD.
+                          </small>
+                        </div>
+                      )}
+                      <span className="art-caption">{project.caption}</span>
+                      <span className="project-arrow">↗</span>
+                    </div>
+                    <div className="project-title">
+                      <h3>{project.name}</h3>
+                      <span>{project.year}</span>
+                    </div>
+                    <p className="project-type">{project.type}</p>
+                    <p className="project-description">{project.description}</p>
+                  </a>
+                ))}
+              </div>
+              <p className="work-footnote">
+                PROJECT ARTWORK IS A VISUAL STUDY. FOLLOW A PROJECT TO SEE THE
+                LIVE WORK.
+              </p>
+            </section>
+            <section id="about" className="about-section">
+              <div className="about-label">
+                <span>02 / THE PERSON</span>
+                <div className="portrait-frame">
+                  <img
+                    src="/profilePic.jpeg"
+                    alt="Abdussamad Yisau"
+                    width="180"
+                    height="210"
+                  />
+                </div>
+                <span>AKA SAMMIE</span>
+              </div>
+              <div className="about-copy">
+                <h2>
+                  Engineering is the craft.
+                  <br />
+                  <em>Curiosity is the engine.</em>
+                </h2>
+                <p>
+                  I’m Abdussamad, a frontend engineer based in Lagos, Nigeria.
+                  My friends call me Sammie. I enjoy consuming, dissecting, and
+                  creating experiences — from building websites and mobile
+                  applications to talking about the concept of eternity with
+                  friends.
+                </p>
+                <p>
+                  Somewhere between the code, you’ll find me running, listening
+                  to a podcast or music, playing FC, or watching a show.
+                </p>
+                <div className="capabilities">
+                  <span>REACT</span>
+                  <span>NEXT.JS</span>
+                  <span>REACT NATIVE</span>
+                  <span>INTERFACE DEVELOPMENT</span>
+                </div>
+                <a
+                  className="text-link"
+                  href="https://github.com/AbdussamadYisau"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  EXPLORE MY GITHUB ↗
+                </a>
+              </div>
+            </section>
+            <section id="interests" className="interests-section">
+              <div className="section-heading">
+                <h2>
+                  <span>03 /</span> Outside the code
+                </h2>
+                <span>A FEW THINGS THAT MAKE ME, ME.</span>
+              </div>
+              <LiveInterests />
+              <PhotoJournal />
+            </section>
+            <ExperienceTimeline />
+            <section id="contact" className="contact-section">
+              <div className="contact-top">
+                <span>05 / HAVE SOMETHING IN MIND?</span>
+                <span>GOOD WORK STARTS WITH A CONVERSATION.</span>
+              </div>
+              <a href="mailto:sammieyisau@gmail.com">
+                Let’s make
+                <br />
+                <span>something.</span>
+                <span className="contact-arrow">↗</span>
+              </a>
+              <div className="contact-email">
+                <a href="mailto:sammieyisau@gmail.com">
+                  sammieyisau@gmail.com ↗
+                </a>
+              </div>
+              <nav className="social-links" aria-label="Social profiles">
+                <a
+                  href="https://www.instagram.com/sammieyisau/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Instagram ↗
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/abdussamad-yisau-915298154/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LinkedIn ↗
+                </a>
+                <a
+                  href="https://github.com/AbdussamadYisau"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub ↗
+                </a>
+                <a
+                  href="https://twitter.com/SammieYisau"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  X / Twitter ↗
+                </a>
+              </nav>
+            </section>
+          </main>
+          <footer>
+            <span>© {new Date().getFullYear()} ABDUSSAMAD YISAU</span>
+            <span>BUILT WITH INTENTION IN LAGOS.</span>
+            <a href="#">BACK TO TOP ↑</a>
+          </footer>
+        </div>
+      </div>
+    </>
   );
 }
