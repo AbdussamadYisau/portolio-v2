@@ -36,7 +36,7 @@ const earlierRoles = [
 
 export default function ExperienceTimeline() {
   return <section id="roles" className="roles-section experience-section" aria-labelledby="experience-title">
-    <div className="section-heading"><h2 id="experience-title"><span>04 /</span> Experience</h2><span>PRODUCTS SHIPPED. LESSONS KEPT.</span></div>
+    <div className="section-heading"><h2 id="experience-title"><span>02 /</span> Experience</h2><span>PRODUCTS SHIPPED. LESSONS KEPT.</span></div>
     <div className="experience-intro"><p>Interfaces for care.<br /><em>Tools for everyday life.</em></p><span>From healthtech to commerce, building across web and mobile.</span></div>
     <div className="experience-featured">{featuredRoles.map((role, index) => <article className="experience-entry" key={role.company}>
       <div className="experience-date"><span className="experience-index">0{index + 1}</span><span>{role.period}</span></div>

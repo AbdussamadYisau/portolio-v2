@@ -28,7 +28,7 @@ const projects = [
     name: "Dictionary",
     type: "Personal project / Web app",
     year: "2023",
-    url: "https://dictionary.abdussamadyisau.com",
+    url: "https://dictionary.abdussamadyisau.xyz",
     art: "dictionary",
     caption: "word /wɜːd/",
     description:
@@ -97,11 +97,11 @@ export default function Home() {
               AY<span>®</span>
             </a>
             <nav aria-label="Main navigation">
-              <a href="#interests">Interests</a>
-              <a href="#roles">Experience</a>
               <a href="#work">
                 Projects <sup>03</sup>
               </a>
+              <a href="#roles">Experience</a>
+              <a href="#interests">Interests</a>
               <a href="#contact">Reach me ↗</a>
             </nav>
             <div className="lagos-clock">
@@ -238,9 +238,10 @@ export default function Home() {
                 LIVE WORK.
               </p>
             </section>
+            <ExperienceTimeline />
             <section id="about" className="about-section">
               <div className="about-label">
-                <span>02 / THE PERSON</span>
+                <span>03 / THE PERSON</span>
                 <div className="portrait-frame">
                   <img
                     src="/profilePic.jpeg"
@@ -287,14 +288,13 @@ export default function Home() {
             <section id="interests" className="interests-section">
               <div className="section-heading">
                 <h2>
-                  <span>03 /</span> Outside the code
+                  <span>04 /</span> Outside the code
                 </h2>
                 <span>A FEW THINGS THAT MAKE ME, ME.</span>
               </div>
               <LiveInterests />
               <PhotoJournal />
             </section>
-            <ExperienceTimeline />
             <section id="contact" className="contact-section">
               <div className="contact-top">
                 <span>05 / HAVE SOMETHING IN MIND?</span>
