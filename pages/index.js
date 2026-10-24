@@ -1,4 +1,5 @@
 import Head from "next/head";
+import StarIcon from "../components/StarIcon";
 import PhotoJournal from "../components/PhotoJournal";
 import LiveInterests from "../components/LiveInterests";
 import ExperienceTimeline from "../components/ExperienceTimeline";
@@ -159,7 +160,7 @@ export default function Home() {
                 </div>
                 <div className="hero-side">
                   <div className="hero-symbol" aria-hidden="true">
-                    ✳
+                    <StarIcon />
                   </div>
                   <p>
                     Frontend engineer.
@@ -202,7 +203,7 @@ export default function Home() {
                         <div className="practice-art">
                           <span>F</span>
                           <span>
-                            P<span className="tiny-star">✳</span>
+                            P<span className="tiny-star"><StarIcon /></span>
                           </span>
                         </div>
                       ) : index === 1 ? (
