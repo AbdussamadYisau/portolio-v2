@@ -195,3 +195,5 @@ footer{align-items:center;font-size:9px;line-height:1.6}
 .soundtrack-history .recent-listening li a{display:inline-flex;align-items:center;min-height:32px}
 .soundtrack-history .recent-listening li p{font-size:11px;line-height:1.6}
 @media(max-width:600px){.soundtrack-history{margin-top:20px}.soundtrack-history .recent-listening li{padding:10px}.soundtrack-history .recent-listening li>img,.soundtrack-history .recent-listening li>.recent-art{width:76px;height:76px}}
+.company-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.company-link>span{font-size:.6em;color:var(--accent);line-height:1}

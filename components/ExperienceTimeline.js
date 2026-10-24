@@ -20,6 +20,7 @@ function Contributions({ items }) {
 const featuredRoles = [
   {
     company: 'Reliance Health',
+    url: 'https://getreliancehealth.com/',
     title: 'Associate Frontend Engineer',
     period: '2022 — 2026',
     context: 'Promoted from Frontend Engineer',
@@ -35,6 +36,7 @@ const featuredRoles = [
   },
   {
     company: 'GoLemon',
+    url: 'https://startupgraveyard.africa/startups/golemon',
     title: 'Frontend Engineer',
     period: '2024 — 2026',
     theme: 'From the screen to the warehouse.',
@@ -59,7 +61,7 @@ export default function ExperienceTimeline() {
     <div className="experience-intro"><p>Interfaces for care.<br /><em>Tools for everyday life.</em></p><span>From healthtech to commerce, building across web and mobile.</span></div>
     <div className="experience-featured">{featuredRoles.map((role, index) => <article className="experience-entry" key={role.company}>
       <div className="experience-date"><span className="experience-index">0{index + 1}</span><span>{role.period}</span></div>
-      <div className="experience-body"><div className="experience-role-heading"><h3>{role.company}</h3><span className="experience-type">{index === 0 ? 'HEALTHTECH' : 'COMMERCE'}</span></div><p className="experience-title">{role.title}</p>{role.context && <p className="experience-context">{role.context}</p>}<h4>{role.theme}</h4><p className="experience-summary">{role.summary}</p>
+      <div className="experience-body"><div className="experience-role-heading"><h3><a className="company-link" href={role.url} target="_blank" rel="noreferrer">{role.company}<span aria-hidden="true">↗</span></a></h3><span className="experience-type">{index === 0 ? 'HEALTHTECH' : 'COMMERCE'}</span></div><p className="experience-title">{role.title}</p>{role.context && <p className="experience-context">{role.context}</p>}<h4>{role.theme}</h4><p className="experience-summary">{role.summary}</p>
       <Contributions items={role.contributions} />
       <ul className="experience-skills" aria-label={`${role.company} skills`}>{role.skills.map(skill => <li key={skill}>{skill}</li>)}</ul></div>
     </article>)}</div>
