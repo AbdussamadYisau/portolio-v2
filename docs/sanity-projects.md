@@ -35,7 +35,7 @@ Suggested initial entries:
 
 | Title | Live app URL | Category | Display order |
 | --- | --- | --- | --- |
-| Stride Pace Converter | https://stride-pace-converter.kindplum13.chatgpt.site/ | Running tool | 0 |
+| Stride Pace Converter | https://speed-converter.abdussamadyisau.xyz/ | Running tool | 0 |
 | URL Shortener | https://url-shortener.abdussamadyisau.xyz/ | Web app | 1 |
 | Frontend Practice | https://frontend-practice-two.vercel.app/ | Interface experiments | 2 |
 | Tag Africa | https://www.tag-africa.org/ | Professional services / Website | 3 |

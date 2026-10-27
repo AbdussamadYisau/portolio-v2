@@ -2,7 +2,7 @@ const fallbackProjects = [
   {
     name: "Stride Pace Converter",
     type: "Running tool",
-    url: "https://stride-pace-converter.kindplum13.chatgpt.site/",
+    url: "https://speed-converter.abdussamadyisau.xyz/",
     description: "A pace converter for runners.",
   },
   {
