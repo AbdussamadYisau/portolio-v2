@@ -1,45 +1,38 @@
 import Head from "next/head";
 import AppearanceMenu from "../components/AppearanceMenu";
 import LagosClock from "../components/LagosClock";
+import ProjectCard from "../components/ProjectCard";
 import StarIcon from "../components/StarIcon";
+import fallbackProjects from "../data/projects";
 import PhotoJournal from "../components/PhotoJournal";
 import LiveInterests from "../components/LiveInterests";
 import ExperienceTimeline from "../components/ExperienceTimeline";
 import { useEffect, useState } from "react";
 
-const projects = [
-  {
-    name: "Frontend Practice",
-    type: "Interface experiments",
-    year: "2024",
-    url: "https://frontend-practice-two.vercel.app/",
-    art: "practice",
-    caption: "Form follows curiosity.",
-    description:
-      "A collection of frontend implementations exploring layout, interaction, and visual detail.",
-  },
-  {
-    name: "Tag Africa",
-    type: "Professional services / Website",
-    year: "2023",
-    url: "https://www.tag-africa.org/",
-    art: "africa",
-    caption: "Ideas without borders.",
-    description: "A landing page for a professional services organisation.",
-  },
-  {
-    name: "Dictionary",
-    type: "Personal project / Web app",
-    year: "2023",
-    url: "https://dictionary.abdussamadyisau.xyz",
-    art: "dictionary",
-    caption: "word /wɜːd/",
-    description:
-      "A dictionary application built as a Frontend Mentor challenge.",
-  },
-];
+
 
 export default function Home() {
+  const [projects, setProjects] = useState(fallbackProjects);
+  const [projectSource, setProjectSource] = useState('fallback');
+  useEffect(() => {
+    const controller = new AbortController();
+    let timer;
+    async function loadProjects() {
+      try {
+        const response = await fetch('/api/projects', { signal: controller.signal });
+        if (response.ok) {
+          const data = await response.json();
+          if (!controller.signal.aborted && data.status === 'ready' && Array.isArray(data.projects) && data.projects.length) {
+            setProjects(data.projects);
+            setProjectSource('sanity');
+          }
+        }
+      } catch {}
+      if (!controller.signal.aborted) timer = setTimeout(loadProjects, 60000);
+    }
+    loadProjects();
+    return () => { controller.abort(); clearTimeout(timer); };
+  }, []);
   const [theme, setTheme] = useState("auto");
   const [now, setNow] = useState(null);
   useEffect(() => {
@@ -112,7 +105,7 @@ export default function Home() {
             </a>
             <nav aria-label="Main navigation">
               <a href="#work">
-                Projects <sup>03</sup>
+                Projects <sup>{String(projects.length).padStart(2, "0")}</sup>
               </a>
               <a href="#roles">Experience</a>
               <a href="#interests">Interests</a>
@@ -190,60 +183,12 @@ export default function Home() {
                 <h2>
                   <span>01 /</span> Selected work
                 </h2>
-                <span>AN ONGOING EXPLORATION, 2023—2024</span>
+                <span>INTERFACES, TOOLS & EXPERIMENTS</span>
               </div>
               <div className="project-grid">
-                {projects.map((project, index) => (
-                  <a
-                    className="project"
-                    href={project.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    key={project.name}
-                  >
-                    <div className={`project-art ${project.art}`} aria-hidden="true">
-                      <span className="art-index">
-                        EXPERIMENT_00{index + 1}
-                      </span>
-                      {index === 0 ? (
-                        <div className="practice-art">
-                          <span>F</span>
-                          <span>
-                            P<span className="tiny-star"><StarIcon /></span>
-                          </span>
-                        </div>
-                      ) : index === 1 ? (
-                        <div className="africa-art">
-                          tag<span>africa↗</span>
-                        </div>
-                      ) : (
-                        <div className="dictionary-art">
-                          <span>
-                            Aa<span>↗</span>
-                          </span>
-                          <small>
-                            THE BEAUTY OF
-                            <br />
-                            FINDING THE RIGHT WORD.
-                          </small>
-                        </div>
-                      )}
-                      <span className="art-caption">{project.caption}</span>
-                      <span className="project-arrow">↗</span>
-                    </div>
-                    <div className="project-title">
-                      <h3>{project.name}</h3>
-                      <span>{project.year}</span>
-                    </div>
-                    <p className="project-type">{project.type}</p>
-                    <p className="project-description">{project.description}</p>
-                  </a>
-                ))}
+                {projects.map((project, index) => <ProjectCard key={project.id || project.url} project={project} index={index} />)}
               </div>
-              <p className="work-footnote">
-                PROJECT ARTWORK IS A VISUAL STUDY. FOLLOW A PROJECT TO SEE THE
-                LIVE WORK.
-              </p>
+              {projectSource === 'fallback' && <p className="work-footnote">PROJECT ARTWORK IS A VISUAL STUDY. FOLLOW A PROJECT TO SEE THE LIVE WORK.</p>}
             </section>
             <ExperienceTimeline />
             <section id="about" className="about-section">

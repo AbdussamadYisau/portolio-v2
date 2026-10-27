@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-work-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "sanity": "^6.20.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "styled-components": "^6.1.15"
+  }
+}

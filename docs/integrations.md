@@ -51,3 +51,38 @@ The gallery uses your existing fields: `title`, `image`, and `image.alt`. Option
 Add `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` to `.env.local` and your deployment environment. No API token is needed for published content in a public dataset. The portfolio proxies reads through its own API route, so frontend requests do not require an additional Sanity CORS origin. Published changes appear after refreshing or the gallery’s 60-second refresh cycle, subject to CDN caching. New deployment environment values require a restart/redeployment.
 
 Click a photo to open a larger view; Escape, the close button, or clicking the backdrop closes it. The gallery shows loading, empty, and retry states when appropriate. This integration reads content and does not modify the Studio or published documents.
+
+## Strava API — automatic custom running card
+
+The running panel can now read running totals directly from Strava. It uses `recent_run_totals` (Strava’s last-four-weeks running summary), not ride/swim totals and not the embedded iframe’s contents. The official embed stays visible while API mode is disabled, unconfigured, or temporarily unavailable. No manual JSON totals are used.
+
+### Connect locally
+
+1. Create a Strava developer app at https://www.strava.com/settings/api. For local authorization use callback domain `127.0.0.1`; the helper listens at `http://127.0.0.1:4388/callback`.
+2. Add `STRAVA_CLIENT_ID` and `STRAVA_CLIENT_SECRET` to `.env.local`.
+3. Create an Upstash Redis database and add `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` to `.env.local`. This persistent store is required because Strava refresh tokens can rotate; storing only the initial refresh token in Vercel is insufficient over time.
+4. Run `node scripts/connect-strava.mjs`. Open its authorization URL and connect your own account with the `read` scope. The helper validates state, saves `STRAVA_REFRESH_TOKEN` and `STRAVA_ATHLETE_ID` directly into `.env.local`, and seeds Redis if configured. It never prints the credentials.
+5. The public custom card is controlled by server-only `STRAVA_PUBLIC_STATS_ENABLED=true`. Enable this only when the intended public display is permitted by Strava; account consent and this switch do not themselves grant an exception to Strava’s API terms. Until then leave it `false` and use the official embed.
+6. Restart the development server.
+
+### Vercel
+
+Add all of the following to Production (and Preview if desired), without a `NEXT_PUBLIC_` prefix:
+
+- `STRAVA_CLIENT_ID`
+- `STRAVA_CLIENT_SECRET`
+- `STRAVA_REFRESH_TOKEN`
+- `STRAVA_ATHLETE_ID`
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+- `STRAVA_PUBLIC_STATS_ENABLED`
+
+Keep the existing `NEXT_PUBLIC_STRAVA_PROFILE_URL` and `NEXT_PUBLIC_STRAVA_EMBED_URL` as well. Mark client secrets, refresh tokens, and the Redis REST token as sensitive. Redeploy after setting the variables. Use a separate Redis database for unrelated apps; Preview and Production can share the same database only if they connect the same athlete and app.
+
+### Behavior and maintenance
+
+`/api/strava` returns only the four display totals and an update timestamp, never credentials. Successful summaries expire from Redis after 15 minutes. Tokens are stored persistently, refreshed under a 30-second distributed lock, and rotated tokens are saved before use. A 401 causes one refresh and retry. Failed requests yield safe reason codes and the card falls back to the official embed.
+
+Re-run the local helper to reconnect; it replaces the stored token and invalidates the cached summary in the configured Redis database. To disconnect, disable API mode, revoke the app in Strava, and delete `portfolio:strava:token`, `portfolio:strava:running`, and `portfolio:strava:refresh-lock` from Redis. Remove the corresponding Vercel variables and redeploy. Do not keep publishing cached totals after revoking access.
+
+Verify with `node --test lib/strava.test.mjs lib/spotify.test.mjs`. Live account verification requires app and Redis configuration.
