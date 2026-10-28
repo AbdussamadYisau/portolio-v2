@@ -2,24 +2,23 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Header() {
-  let options = {
-      timeZone: "Africa/Lagos",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      hourCycle: "h12",
-    },
-    formatter = new Intl.DateTimeFormat([], options);
+const formatter = new Intl.DateTimeFormat([], {
+  timeZone: "Africa/Lagos",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  hourCycle: "h12",
+});
 
+export default function Header() {
   const [date, setCurrentDate] = useState(new Date());
   const [myDate, setMyCurrentDate] = useState(formatter.format(new Date()));
 
-  function refreshClock() {
-    setCurrentDate(new Date());
-    setMyCurrentDate(formatter.format(new Date()));
-  }
   useEffect(() => {
+    function refreshClock() {
+      setCurrentDate(new Date());
+      setMyCurrentDate(formatter.format(new Date()));
+    }
     const timerId = setInterval(refreshClock, 1000);
     return function cleanup() {
       clearInterval(timerId);
@@ -106,7 +105,7 @@ export default function Header() {
                     index === 1 || index === 2 ? "hidden md:block" : "block"
                   }`}
                 >
-                  //{item.label}
+                  {'//'}{item.label}
                 </p>
               
 

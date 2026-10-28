@@ -18,7 +18,7 @@ export default function Links() {
   ];
   return (
     <div className="border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12] pt-10">
-      <p className="text-[16px] text-[#8C8C8C]">//links</p>
+      <p className="text-[16px] text-[#8C8C8C]">{'//links'}</p>
         <div className="pt-[16px]">
         {linksInfo.map((experience, index) => (
           <div

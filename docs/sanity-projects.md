@@ -46,8 +46,8 @@ Add a short description, and optionally a year and screenshot. Titles, descripti
 ## Publishing behavior
 
 - Only published `project` documents with a title and valid HTTP(S) URL are displayed. Photo and starter blog documents are excluded.
-- Once there is at least one valid published project, the CMS list replaces the bundled starter list. Publish all entries you want to keep in that list.
-- Before initial setup, when the CMS list is empty, or if the first request fails, the bundled five projects remain visible. An intentional completely empty CMS list also uses that starter list; hide the section in code if you want no projects at all.
+- A successful CMS response replaces the bundled starter list, including an intentionally empty collection. Publish all entries you want displayed.
+- Projects are fetched on the server for each page request, so the initial HTML includes published CMS content. If Sanity is unconfigured or unavailable, the bundled five projects provide a fallback. An empty published collection displays no project cards.
 - After successful loading, a temporary fetch error retains the last displayed list. The page checks for changes every minute, with additional CDN caching possible. Refreshing or waiting is enough for content updates; no Vercel rebuild is required.
 - The navigation project count updates from the displayed list.
 

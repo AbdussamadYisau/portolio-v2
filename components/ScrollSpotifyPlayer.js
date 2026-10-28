@@ -24,7 +24,8 @@ export default function ScrollSpotifyPlayer({ url }) {
     let ready = false, started = false, finished = false;
     setStatus('loading');
     const host = document.createElement('div');
-    mount.current.appendChild(host);
+    const mountNode = mount.current;
+    mountNode.appendChild(host);
     const stop = () => { controller.current?.pause(); };
     const attempt = () => {
       if (!controller.current || !ready || disposed) return;
@@ -63,7 +64,7 @@ export default function ScrollSpotifyPlayer({ url }) {
       disposed = true; clearTimeout(watchdog); clearTimeout(readyTimeout);
       document.removeEventListener('visibilitychange', onVisibility);
       controller.current?.destroy(); controller.current = null; play.current = null;
-      mount.current?.replaceChildren();
+      mountNode.replaceChildren();
     };
   }, [url]);
   const fallbackEmbed = url.replace('/track/', '/embed/track/');

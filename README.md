@@ -32,3 +32,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Repository checks
+
+Use Node 24 (see `.nvmrc`). Run `npm run lint`, `npm test`, and `npm run build`.
+Build the independent editor with `npm --prefix studio run build`.
+Run `npm audit` and `npm --prefix studio audit` to check both dependency trees.
+
+The package overrides pin patched transitive dependencies while their parent packages
+still request vulnerable versions. Revisit these overrides when updating Satori or
+Sanity; do not use `npm audit fix --force` to downgrade Sanity.
+
+Regenerate the static sharing image with `node scripts/generate-social-preview.mjs`.
+See [Sanity setup](docs/sanity-projects.md) and [integrations](docs/integrations.md)
+for publishing content and configuring external services.

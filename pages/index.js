@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { getProjects } from "../lib/sanity.mjs";
+import { resolveProjectContent } from "../lib/content-state.mjs";
 import AppearanceMenu from "../components/AppearanceMenu";
 import LagosClock from "../components/LagosClock";
 import ProjectCard from "../components/ProjectCard";
@@ -11,9 +13,15 @@ import { useEffect, useState } from "react";
 
 
 
-export default function Home() {
-  const [projects, setProjects] = useState(fallbackProjects);
-  const [projectSource, setProjectSource] = useState('fallback');
+export async function getServerSideProps() {
+  let data;
+  try { data = await getProjects(); } catch {}
+  return { props: { initialContent: resolveProjectContent(data, { projects: fallbackProjects, source: 'fallback' }) } };
+}
+
+export default function Home({ initialContent }) {
+  const [content, setContent] = useState(initialContent);
+  const { projects, source: projectSource } = content;
   useEffect(() => {
     const controller = new AbortController();
     let timer;
@@ -22,10 +30,7 @@ export default function Home() {
         const response = await fetch('/api/projects', { signal: controller.signal });
         if (response.ok) {
           const data = await response.json();
-          if (!controller.signal.aborted && data.status === 'ready' && Array.isArray(data.projects) && data.projects.length) {
-            setProjects(data.projects);
-            setProjectSource('sanity');
-          }
+          if (!controller.signal.aborted) setContent(previous => resolveProjectContent(data, previous));
         }
       } catch {}
       if (!controller.signal.aborted) timer = setTimeout(loadProjects, 60000);

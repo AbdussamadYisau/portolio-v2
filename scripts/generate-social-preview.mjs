@@ -1,12 +1,9 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import React from 'react';
-import satori, { init } from 'satori/wasm';
-import initYoga from 'yoga-wasm-web';
-import { initWasm, Resvg } from '@resvg/resvg-wasm';
+import satori from 'satori';
+import { Resvg } from '@resvg/resvg-js';
 
 const root = new URL('../', import.meta.url);
-init(await initYoga(await readFile(new URL('node_modules/@vercel/og/vendor/yoga.wasm', root))));
-await initWasm(await readFile(new URL('node_modules/@resvg/resvg-wasm/index_bg.wasm', root)));
 const h = React.createElement;
 const ink = '#151515';
 const tree = h('div', { style: { display:'flex',flexDirection:'column',width:'100%',height:'100%',background:'#e4ee8a',color:ink,padding:'45px 55px',fontFamily:'Inter' } },
@@ -26,6 +23,6 @@ const svg = await satori(tree, {width:1200,height:630,fonts:[
   {name:'Inter',data:await readFile(new URL('assets/Inter-Medium.ttf',root)),weight:500,style:'normal'},
   {name:'Inter',data:await readFile(new URL('assets/Inter-Black.ttf',root)),weight:900,style:'normal'},
 ]});
-const png = new Resvg(svg).render();
+const png = new Resvg(svg).render().asPng();
 await writeFile(new URL('public/social-preview.png',root),png);
 console.log(`Generated social-preview.png (1200×630, ${png.length} bytes)`);

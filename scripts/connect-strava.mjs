@@ -29,7 +29,7 @@ const server=createServer(async(req,res)=>{
     }
     await writeFile('.env.local',content,{mode:0o600});await chmod('.env.local',0o600);
     const store=createStravaStore();
-    if(store){await store.set('portfolio:strava:token',{access_token:data.access_token,refresh_token:data.refresh_token,expires_at:data.expires_at});await store.set('portfolio:strava:running',null,1);}
+    if(store){await store.set('portfolio:strava:token',{access_token:data.access_token,refresh_token:data.refresh_token,expires_at:data.expires_at});await store.set('portfolio:strava:running',null,1);await store.set('portfolio:strava:backoff',null,1);}
     res.end('Strava connected. Close this tab and restart the portfolio.');
     console.log('Strava connected. Refresh token and athlete ID saved to ignored .env.local. Add the server variables to Vercel and redeploy.');
   }catch{res.writeHead(500).end('Connection failed. Check your app settings and Redis configuration, then try again.');console.error('Connection failed. No credentials have been printed.');}

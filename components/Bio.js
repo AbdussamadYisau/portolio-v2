@@ -49,13 +49,13 @@ export default function Bio() {
             ></span>
           </div>
           <p className="text-xl md:text-2xl text-[#8C8C8C]">
-            //Frontend Engineer
+            {'//Frontend Engineer'}
           </p>
         </div>
       </div>
 
       <div className="border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12]">
-        <p className="text-[16px] text-[#8C8C8C]">//about</p>
+        <p className="text-[16px] text-[#8C8C8C]">{'//about'}</p>
         <p className="text-[16px] pt-[24px] text-[#1F1F1F] dark:text-[#FFFFFF] dark:text-opacity-[.87] w-full md:w-2/4">
           hi, i’m abdussamad, my friends call me sammie. i enjoy consuming,
           dissecting and creating experiences- that could be anything from {" "}

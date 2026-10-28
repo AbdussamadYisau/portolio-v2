@@ -71,7 +71,7 @@ export default function Experience() {
   return (
     <>
       <div className="flex flex-col gap-6 border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12] pt-10">
-        <p className="text-[16px] text-[#8C8C8C]">//work experience</p>
+        <p className="text-[16px] text-[#8C8C8C]">{'//work experience'}</p>
 
         <div className="pt-[16px]">
           {workExperience.map((experience, index) => (
@@ -102,7 +102,7 @@ export default function Experience() {
                 >
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
-                    //{experience.role.toLowerCase()}
+                    {'//'}{experience.role.toLowerCase()}
                   </span>
                 </p>
                 <ul className="mt-[24px] list-inside list-disc">
@@ -149,7 +149,7 @@ export default function Experience() {
       </div>
 
       <div className="flex flex-col gap-6 border-b pb-5 border-[#8C8C8C] dark:border-white dark:border-opacity-[.12] pt-10">
-        <p className="text-[16px] text-[#8C8C8C]">//communities</p>
+        <p className="text-[16px] text-[#8C8C8C]">{'//communities'}</p>
 
         <div className="pt-[16px]">
           {volunteeringExperience.map((experience, index) => (
@@ -170,7 +170,7 @@ export default function Experience() {
                 >
                   {`${experience.name} `}{" "}
                   <span className="text-[#8C8C8C]">
-                    //{experience.role.toLowerCase()}
+                    {'//'}{experience.role.toLowerCase()}
                   </span>
                 </p>
                 <ul className="mt-[24px] list-inside list-disc">

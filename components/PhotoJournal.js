@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { retainPicturesOnError } from '../lib/content-state.mjs';
 
 export default function PhotoJournal() {
   const [data, setData] = useState({ status: 'loading', pictures: [] });
@@ -19,7 +20,7 @@ export default function PhotoJournal() {
         if (!response.ok) throw new Error();
         const result = await response.json();
         if (!controller.signal.aborted) setData(result);
-      } catch { if (!controller.signal.aborted) setData({ status: 'unavailable', pictures: [] }); }
+      } catch { if (!controller.signal.aborted) setData(retainPicturesOnError); }
       if (!controller.signal.aborted) timer = setTimeout(load, 60000);
     }
     load();
@@ -81,6 +82,7 @@ export default function PhotoJournal() {
   }
   return <section className="photo-journal" aria-labelledby="photo-journal-title">
     <div className="journal-heading"><div><span className="control-label">THROUGH MY LENS</span><h3 id="photo-journal-title">Life, <em>lately.</em></h3><p>Snapshots and things that catch my eye.</p></div><a className="text-link" href="https://www.instagram.com/sammieyisau/" target="_blank" rel="noreferrer">INSTAGRAM ↗</a></div>
+    {data.refreshFailed && <p className="journal-notice" role="status">Showing saved photos. Updates are temporarily unavailable. <button onClick={() => setRetry(value => value + 1)}>Retry ↗</button></p>}
     {data.status === 'loading' && <p className="journal-notice" role="status">Developing the photos…</p>}
     {data.status === 'unavailable' && <div className="journal-notice" role="status">The photo journal is temporarily unavailable. <button onClick={() => { setData({ status: 'loading', pictures: [] }); setRetry(value => value + 1); }}>Try again ↗</button></div>}
     {(data.status === 'unconfigured' || (data.status === 'ready' && !data.pictures.length)) && <p className="journal-notice">A few moments worth keeping. Photos coming soon.</p>}
